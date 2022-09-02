@@ -1,0 +1,58 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1370px;
+    margin: 0 auto;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #dd9933;
+    min-height: 30px;
+    padding: 0 15px;
+}
+
+.banner__left {
+    color: white;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.banner__right {
+    color: white;
+    display: flex;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    font-size: 14px;
+    margin: 0 4px;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
+}
+
+.main {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.logo {
+    width: 169px;
+    max-height: 100px;
+    margin-right: 30px;
+    padding: 5px 0;
+    object-fit: contain;
+}
