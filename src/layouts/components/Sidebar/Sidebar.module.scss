@@ -1,0 +1,9 @@
+.wrapper {
+    flex: 1;
+    max-width: 25%;
+    padding: 0 15px 30px 15px;
+
+    @media screen and (max-width: 849px) {
+        display: none;
+    }
+}

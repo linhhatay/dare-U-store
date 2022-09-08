@@ -5,6 +5,10 @@
     .active {
         color: rgba(17, 17, 17, 0.85);
     }
+
+    @media screen and (max-width: 849px) {
+        display: none;
+    }
 }
 
 .menu-item {
@@ -16,6 +20,10 @@
     font-weight: 400;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+
+    &:hover {
+        color: rgba(17, 17, 17, 0.85);
+    }
 }
 
 .title {

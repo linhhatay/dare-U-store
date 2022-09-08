@@ -1,0 +1,46 @@
+.wrapper {
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+}
+
+.title {
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.divider {
+    margin: 10px 0 16px 0;
+}
+
+.list {
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+
+    &:not(:first-child) {
+        border-top: 1px solid #ececec;
+    }
+
+    a {
+        flex: 1;
+        color: #919191;
+        padding: 6px 0;
+
+        &:hover {
+            cursor: pointer;
+            color: black;
+        }
+    }
+}
+
+.count {
+    font-size: 12px;
+    line-height: 34px;
+    opacity: 0.5;
+}

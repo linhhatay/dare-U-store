@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 1.28rem;
+
+    span {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-right: 6px;
+}
+
+.primary {
+}
+
+.rounded {
+    border-radius: 999px;
+}
+
+.text {
+}
