@@ -3,6 +3,7 @@ import News from '~/pages/News';
 import Support from '~/pages/Support';
 import Contact from '~/pages/Contact';
 import Store from '~/pages/Store';
+import Admin from '~/pages/Admin';
 
 import config from '~/config';
 
@@ -14,6 +15,6 @@ const publicRoutes = [
     { path: config.routes.store, component: Store },
 ];
 
-const privateRoutes = [];
+const privateRoutes = [{ path: config.routes.admin, component: Admin }];
 
 export { publicRoutes, privateRoutes };

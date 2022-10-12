@@ -2,12 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { publicRoutes } from '~/routes';
 import { DefaultLayout } from '~/layouts';
+import Admin from './pages/Admin';
 
 function App() {
     return (
         <Router>
             <div className="App">
-                <Routes>
+                <Admin />
+                {/* <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
                         return (
@@ -22,7 +24,7 @@ function App() {
                             />
                         );
                     })}
-                </Routes>
+                </Routes> */}
             </div>
         </Router>
     );

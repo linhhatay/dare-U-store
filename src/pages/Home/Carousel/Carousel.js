@@ -1,23 +1,46 @@
+import classNames from 'classnames/bind';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import styles from '../Home.module.scss';
-import classNames from 'classnames/bind';
+
+import styles from './Carousel.module.scss';
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 
 const cx = classNames.bind(styles);
+
+function NextArrow(props) {
+    const { onClick } = props;
+    return (
+        <div className={cx('next-arrow')} onClick={onClick}>
+            <GoChevronRight />
+        </div>
+    );
+}
+
+function PrevArrow(props) {
+    const { onClick } = props;
+    return (
+        <div className={cx('prev-arrow')} onClick={onClick}>
+            <GoChevronLeft />
+        </div>
+    );
+}
 
 function Carousel() {
     const settings = {
         infinite: true,
         speed: 500,
         dots: true,
+        dotsClass: cx('dots'),
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
     };
     return (
-        <Slider {...settings}>
+        <Slider {...settings} className={cx('wrapper')}>
             <img
                 className={cx('carousel-item')}
                 src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-01-1400x649.jpg"

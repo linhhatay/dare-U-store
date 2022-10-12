@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
-import { GoChevronRight } from 'react-icons/go';
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -12,43 +12,21 @@ import { FaFacebookF, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const cx = classNames.bind(styles);
 
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
+function NextArrow(props) {
+    const { onClick } = props;
     return (
-        <div
-            className={className}
-            style={{
-                ...style,
-                display: 'block',
-                background: 'white',
-                width: '34px',
-                height: '100%',
-                WebkitBoxShadow: '0 -150px 15px 0 rgb(0 0 0 / 30%)',
-                boxShadow: '0 -150px 15px 0 rgb(0 0 0 / 30%)',
-            }}
-            onClick={onClick}
-        >
-            <GoChevronRight style={{ fontSize: '20px' }} />
+        <div className={cx('next-arrow')} onClick={onClick}>
+            <GoChevronRight />
         </div>
     );
 }
 
-function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
+function PrevArrow(props) {
+    const { onClick } = props;
     return (
-        <div
-            className={className}
-            style={{
-                ...style,
-                display: 'block',
-                background: 'white',
-                width: '34px',
-                height: '100%',
-                WebkitBoxShadow: '0 -150px 15px 0 rgb(0 0 0 / 30%)',
-                boxShadow: '0 -150px 15px 0 rgb(0 0 0 / 30%)',
-            }}
-            onClick={onClick}
-        />
+        <div className={cx('prev-arrow')} onClick={onClick}>
+            <GoChevronLeft />
+        </div>
     );
 }
 
@@ -58,8 +36,8 @@ function Home() {
         speed: 500,
         slidesToShow: 6,
         slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
         responsive: [
             {
                 breakpoint: 849,
@@ -93,7 +71,7 @@ function Home() {
                 </div>
             </div>
             <div className={cx('suggestion')}>
-                <Slider {...settings}>
+                <Slider {...settings} className={cx('carousel')}>
                     <Product />
                     <Product />
                     <Product />
