@@ -4,7 +4,8 @@ const routes = {
     store: '/store',
     support: '/support',
     contact: '/contact',
-    admin: '/admin',
+    auth: '/auth',
+    admin: '/',
 };
 
 export default routes;

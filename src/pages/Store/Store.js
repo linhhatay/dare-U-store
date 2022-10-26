@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RiEqualizerLine } from 'react-icons/ri';
 
 import styles from './Store.module.scss';
@@ -7,11 +7,13 @@ import Modal from '~/components/Modal';
 import Portal from '~/components/Portal';
 import Product from '~/components/Product';
 import Sidebar from '~/layouts/components/Sidebar';
+import { useDispatch, useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Store() {
     const [modalIsOpen, setIsOpen] = useState(false);
+    const { product } = useSelector((state) => state);
 
     function openModal() {
         setIsOpen(true);
@@ -45,11 +47,9 @@ function Store() {
             <div className={cx('container')}>
                 <Sidebar />
                 <div className={cx('content')}>
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    {product.data.map((item, index) => (
+                        <Product data={item} key={index} />
+                    ))}
                 </div>
             </div>
             {modalIsOpen && (

@@ -1,88 +1,14 @@
 .wrapper {
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 849px) {
+        display: none;
+    }
 }
 
 .separate {
     border-left: 1px solid rgba(0, 0, 0, 0.1);
     height: 3rem;
     margin: 0 7px;
-}
-
-.cart {
-    display: flex;
-    position: relative;
-    margin-left: 7px;
-    padding: 1rem 0;
-    cursor: pointer;
-}
-
-.badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.7rem;
-    height: 1.7rem;
-    border-radius: 50%;
-    background-color: #d26e4b;
-    color: white;
-    position: absolute;
-    top: 0.2rem;
-    right: -0.8rem;
-    -webkit-box-shadow: 1px 1px 3px 0px rgb(0 0 0 / 30%);
-    box-shadow: 1px 1px 3px 0px rgb(0 0 0 / 30%);
-    font-weight: 600;
-    font-family: Arial, Sans-serif !important;
-    font-size: 10px;
-    opacity: 0.9;
-}
-
-.cart-btn {
-    color: #4db7b3;
-
-    font-size: 2.4rem;
-}
-
-// Modal
-.content {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 320px;
-    background-color: rgba(255, 255, 255, 0.95);
-    -webkit-box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
-    box-shadow: 0px 0px 10px -1px rgb(0 0 0 / 50%);
-
-    @media screen and (max-width: 749px) {
-        width: 260px;
-    }
-}
-
-.cart-inner {
-    padding: 3rem;
-}
-
-.cart-title {
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #555;
-}
-
-.divider {
-    margin: 1.6rem auto;
-}
-
-.cart-content {
-}
-
-.cart-message {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #777;
 }

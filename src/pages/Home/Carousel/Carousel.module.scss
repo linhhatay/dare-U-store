@@ -1,5 +1,5 @@
 .wrapper {
-    display: flex;
+    // display: flex;
     position: relative;
 
     &:hover {
@@ -8,13 +8,21 @@
         .next-arrow,
         .prev-arrow {
             display: flex;
+
+            @media screen and (max-width: 549px) {
+                display: none;
+            }
         }
     }
 }
 
 .carousel-item {
-    max-height: 640px;
+    max-height: 700px;
     object-fit: cover;
+
+    img {
+        width: 100%;
+    }
 }
 
 .next-arrow,

@@ -5,23 +5,18 @@ import styles from './Product.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Product() {
+function Product({ data }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('image')}>
                 <div className={cx('badge')}>-15%</div>
-                <img
-                    src="https://dareu.com.vn/wp-content/uploads/2021/04/ban-phim-co-khong-day-dareu-ek861-01-400x400.png"
-                    alt=""
-                />
+                <img src={data.image} alt="" />
             </div>
             <div className={cx('info')}>
-                <p className={cx('name')}>
-                    Bàn phím cơ không dây DAREU EK861 61KEY (PBT, Blue/ Brown/ Red D-KAILH switch)
-                </p>
+                <p className={cx('name')}>{data.name}</p>
                 <div>
-                    <span className={cx('old-price')}>1.099.000</span>
-                    <span className={cx('new-price')}>600.000</span>
+                    <span className={cx('old-price')}>{data.oldPrice}</span>
+                    <span className={cx('new-price')}>{data.newPrice}</span>
                 </div>
                 <div className={cx('status')}>
                     <FaCheck className={cx('icon')} />

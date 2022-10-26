@@ -9,6 +9,7 @@ import styles from './Home.module.scss';
 import Product from '~/components/Product';
 import Button from '~/components/Button';
 import { FaFacebookF, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
@@ -31,6 +32,8 @@ function PrevArrow(props) {
 }
 
 function Home() {
+    const { product } = useSelector((state) => state);
+
     const settings = {
         infinite: true,
         speed: 500,
@@ -72,13 +75,12 @@ function Home() {
             </div>
             <div className={cx('suggestion')}>
                 <Slider {...settings} className={cx('carousel')}>
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    {product.data.map((item, index) => (
+                        <Product data={item} key={index} />
+                    ))}
+                    {product.data.map((item, index) => (
+                        <Product data={item} key={index} />
+                    ))}
                 </Slider>
             </div>
             <div className={cx('banner-layers')}>

@@ -58,6 +58,7 @@
     padding: 0 1.5rem;
     max-width: 1370px;
     margin: 0 auto;
+    border-bottom: 1px solid #ddd;
 
     @media screen and (max-width: 849px) {
         justify-content: space-between;
@@ -65,6 +66,32 @@
 
     @media screen and (max-width: 549px) {
         height: 7rem;
+    }
+}
+@keyframes stuckMoveDown {
+    0% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    height: 53px;
+    background-color: #fff;
+    transition: background-color 0.3s, opacity 0.3s;
+    animation: stuckMoveDown 0.6s;
+
+    .logo {
+        max-height: 53px;
     }
 }
 
@@ -105,6 +132,11 @@
 
     @media screen and (max-width: 549px) {
         max-height: 7rem;
+        margin-right: 0;
+    }
+
+    @media screen and (max-width: 849px) {
+        margin-right: 0;
     }
 }
 

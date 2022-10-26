@@ -1,3 +1,7 @@
+.wrapper {
+    min-height: 100px;
+}
+
 .banner {
     height: 500px;
     display: flex;
@@ -168,7 +172,7 @@
 
 .contact-inner {
     position: relative;
-    top: -28px;
+    top: -40px;
     background-color: #fff;
     max-width: 1340px;
     width: 100%;
@@ -270,7 +274,7 @@
 }
 
 .carousel {
-    display: flex;
+    // display: flex;
     overflow: hidden;
 
     &:hover {
@@ -298,11 +302,17 @@
     font-size: 30px;
     -webkit-box-shadow: 0 -150px 15px 0 rgba(0 0 0 / 30%);
     box-shadow: 0 -150px 15px 0 rgba(0 0 0 / 30%);
-    z-index: 9;
+    z-index: 1;
 
     &:hover {
         cursor: pointer;
         color: #4db7b3;
+    }
+
+    @media screen and (max-width: 549px) {
+        display: flex;
+        box-shadow: none;
+        -webkit-box-shadow: none;
     }
 }
 

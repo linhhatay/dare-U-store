@@ -29,6 +29,7 @@ function Search() {
         }
 
         setLoading(true);
+
         fetch(
             `https://www.tncstore.vn/?route=api/product/search&filter_name=${encodeURIComponent(
                 debounced,

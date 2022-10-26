@@ -50,7 +50,6 @@ export const create = createAsyncThunk('product/create', async (state, action) =
 export const get = createAsyncThunk('product/get', async (state, action) => {
     try {
         const res = await axios.get('http://localhost:5000/api/v1/product');
-        console.log(res);
         return res.data;
     } catch (error) {
         console.log('Có lỗi !!');

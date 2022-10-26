@@ -14,6 +14,7 @@ import Modal from '~/components/Modal';
 import Portal from '~/components/Portal';
 import Separate from '~/components/Separate';
 import Menu, { MenuItem } from './Menu';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
@@ -77,15 +78,7 @@ const MENU_CONTACT = [
 ];
 
 function Navigation() {
-    const [modalIsOpen, setIsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
+    const { auth } = useSelector((state) => state);
 
     return (
         <div className={cx('wrapper')}>
@@ -108,27 +101,11 @@ function Navigation() {
                 </Dropdown>
 
                 <div className={cx('separate')}></div>
-            </Menu>
-            <div className={cx('cart')} onClick={openModal}>
-                <span className={cx('badge')}>1</span>
-                <RiShoppingBasketFill className={cx('cart-btn')} />
-            </div>
 
-            {modalIsOpen && (
-                <Portal>
-                    <Modal closeModal={closeModal}>
-                        <div className={cx('content')}>
-                            <div className={cx('cart-inner')}>
-                                <h4 className={cx('cart-title')}>Giỏ hàng</h4>
-                                <Separate className={cx('divider')} />
-                                <div className={cx('cart-content')}>
-                                    <p className={cx('cart-message')}>Chưa có sản phẩm trong giỏ hàng.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </Modal>
-                </Portal>
-            )}
+                <div>
+                    <MenuItem title={auth.data.accessToken ? 'Tài khoản' : 'Đăng Nhập'} to={config.routes.auth} />
+                </div>
+            </Menu>
         </div>
     );
 }

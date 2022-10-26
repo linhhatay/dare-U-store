@@ -35,38 +35,59 @@ function Carousel() {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 5000,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
     };
     return (
-        <Slider {...settings} className={cx('wrapper')}>
-            <img
-                className={cx('carousel-item')}
-                src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-01-1400x649.jpg"
-                alt=""
-            />
-            <img
-                className={cx('carousel-item')}
-                src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-02-1400x649.jpg"
-                alt=""
-            />
-            <img
-                className={cx('carousel-item')}
-                src="https://dareu.com.vn/wp-content/uploads/2021/01/37ec4bc1a6dfcd1c9f7ac68589ec1e98-1400x683.jpg"
-                alt=""
-            />
-            <img
-                className={cx('carousel-item')}
-                src="https://dareu.com.vn/wp-content/uploads/2021/01/dareu-banner-a960-1400x683.jpg"
-                alt=""
-            />
-            <img
-                className={cx('carousel-item')}
-                src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-03-1400x649.jpg"
-                alt=""
-            />
-        </Slider>
+        <div>
+            <Slider {...settings} className={cx('wrapper')}>
+                <img
+                    src="https://dareu.com.vn/wp-content/uploads/2021/01/37ec4bc1a6dfcd1c9f7ac68589ec1e98-1400x683.jpg"
+                    alt=""
+                />
+                <img
+                    src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-01-1400x649.jpg"
+                    alt=""
+                />
+                <img
+                    src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-02-1400x649.jpg"
+                    alt=""
+                />
+                <img src="https://dareu.com.vn/wp-content/uploads/2021/01/dareu-banner-a960-1400x683.jpg" alt="" />
+                <img
+                    src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-03-1400x649.jpg"
+                    alt=""
+                />
+                {/* <div className={cx('carousel-item')}>
+                    <img
+                        src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-01-1400x649.jpg"
+                        alt=""
+                    />
+                </div>
+                <div className={cx('carousel-item')}>
+                    <img
+                        src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-02-1400x649.jpg"
+                        alt=""
+                    />
+                </div>
+                <div className={cx('carousel-item')}>
+                    <img
+                        src="https://dareu.com.vn/wp-content/uploads/2021/01/37ec4bc1a6dfcd1c9f7ac68589ec1e98-1400x683.jpg"
+                        alt=""
+                    />
+                </div>
+                <div className={cx('carousel-item')}>
+                    <img src="https://dareu.com.vn/wp-content/uploads/2021/01/dareu-banner-a960-1400x683.jpg" alt="" />
+                </div>
+                <div className={cx('carousel-item')}>
+                    <img
+                        src="https://dareu.com.vn/wp-content/uploads/2022/02/dareu-viet-nam-banner-03-1400x649.jpg"
+                        alt=""
+                    />
+                </div> */}
+            </Slider>
+        </div>
     );
 }
 

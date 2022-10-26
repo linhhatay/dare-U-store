@@ -2,9 +2,9 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { TiMail } from 'react-icons/ti';
-import { FaFacebookF } from 'react-icons/fa';
+import { FaFacebookF, FaLeaf } from 'react-icons/fa';
 import { HiOutlineMenu } from 'react-icons/hi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './Header.module.scss';
 import Search from '../Search';
@@ -12,11 +12,13 @@ import Navigation from '../Navigation';
 import config from '~/config';
 import Portal from '~/components/Portal';
 import Modal from '~/components/Modal';
+import Cart from './Cart';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [sticky, setSticky] = useState(false);
 
     function openModal() {
         setIsOpen(true);
@@ -25,6 +27,22 @@ function Header() {
     function closeModal() {
         setIsOpen(false);
     }
+
+    useEffect(() => {
+        function handleScroll() {
+            if (window.scrollY > 150) {
+                setSticky(true);
+            } else {
+                setSticky(false);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [sticky]);
 
     return (
         <header className={cx('wrapper')}>
@@ -49,7 +67,7 @@ function Header() {
                     </ul>
                 </div>
             </div>
-            <div className={cx('main')}>
+            <div className={cx(['main', sticky && 'sticky'])}>
                 <div className={cx('mobile-nav')} onClick={openModal}>
                     <HiOutlineMenu className={cx('mobile-nav-btn')} />
                     MENU
@@ -63,14 +81,17 @@ function Header() {
                 </Link>
                 <Search />
                 <Navigation />
+                <Cart />
             </div>
 
             {modalIsOpen && (
                 <Portal>
                     <Modal closeModal={closeModal}>
-                        <div className={cx('mobile-nav-content')}>
-                            <div className={cx('mobile-nav-inner')}></div>
-                        </div>
+                        {/* <Navigation /> */}
+                        {/* <div className={cx('mobile-nav-content')}>
+                            <div className={cx('mobile-nav-inner')}>
+                            </div>
+                        </div> */}
                     </Modal>
                 </Portal>
             )}
