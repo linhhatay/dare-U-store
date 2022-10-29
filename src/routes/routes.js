@@ -5,6 +5,7 @@ import Contact from '~/pages/Contact';
 import Store from '~/pages/Store';
 import Admin from '~/pages/Admin';
 import Auth from '~/pages/Auth';
+import ProductDetails from '~/components/ProductDetails';
 
 import config from '~/config';
 
@@ -15,6 +16,7 @@ const publicRoutes = [
     { path: config.routes.contact, component: Contact },
     { path: config.routes.store, component: Store },
     { path: config.routes.auth, component: Auth },
+    { path: config.routes.details, component: ProductDetails },
 ];
 
 const privateRoutes = [{ path: config.routes.admin, component: Admin, layout: null }];

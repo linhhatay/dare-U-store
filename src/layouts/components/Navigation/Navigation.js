@@ -51,6 +51,7 @@ const MENU_SUPPORT = [
     {
         icon: <MdDownload />,
         title: 'Driver tải về',
+        to: config.routes.support,
     },
     {
         icon: <FaBook />,
@@ -70,6 +71,7 @@ const MENU_CONTACT = [
     {
         icon: <ImSearch />,
         title: 'Kiểm tra bảo hành',
+        to: config.routes.contact,
     },
     {
         icon: <FaBuilding />,
@@ -91,12 +93,12 @@ function Navigation() {
                 <MenuItem title="Tin tức" to={config.routes.news} />
                 <Dropdown items={MENU_SUPPORT}>
                     <div>
-                        <MenuItem title="Hỗ trợ" to={config.routes.support} dropdown={true} />
+                        <MenuItem title="Hỗ trợ" dropdown={true} />
                     </div>
                 </Dropdown>
                 <Dropdown items={MENU_CONTACT}>
                     <div>
-                        <MenuItem title="Liên hệ" to={config.routes.contact} dropdown={true} />
+                        <MenuItem title="Liên hệ" dropdown={true} />
                     </div>
                 </Dropdown>
 

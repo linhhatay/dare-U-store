@@ -60,6 +60,9 @@
     margin: 0 auto;
     border-bottom: 1px solid #ddd;
 
+    &::after {
+    }
+
     @media screen and (max-width: 849px) {
         justify-content: space-between;
     }
@@ -68,6 +71,7 @@
         height: 7rem;
     }
 }
+
 @keyframes stuckMoveDown {
     0% {
         -webkit-transform: translateY(-100%);
@@ -78,6 +82,18 @@
         transform: translateY(0);
     }
 }
+
+// .stucky {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     z-index: 9;
+//     height: 53px;
+//     background-color: #fff;
+//     transition: background-color 0.3s, opacity 0.3s;
+//     animation: stuckMoveDown 0.6s;
+// }
 
 .sticky {
     position: fixed;
@@ -116,6 +132,7 @@
 
 .back {
     max-height: 10rem;
+    height: 100%;
 
     @media screen and (max-width: 549px) {
         max-height: 7rem;

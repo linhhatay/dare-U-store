@@ -6,6 +6,7 @@ const routes = {
     contact: '/contact',
     auth: '/auth',
     admin: '/',
+    details: '/:id',
 };
 
 export default routes;

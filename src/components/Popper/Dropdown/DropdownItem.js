@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function DropdownItem({ data }) {
     return (
-        <Button className={cx('dropdown-item')} leftIcon={data.icon}>
+        <Button className={cx('dropdown-item')} leftIcon={data.icon} to={data.to}>
             {data.title}
         </Button>
     );

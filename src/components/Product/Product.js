@@ -15,8 +15,8 @@ function Product({ data }) {
             <div className={cx('info')}>
                 <p className={cx('name')}>{data.name}</p>
                 <div>
-                    <span className={cx('old-price')}>{data.oldPrice}</span>
-                    <span className={cx('new-price')}>{data.newPrice}</span>
+                    <span className={cx('old-price')}>{data.oldPrice}đ</span>
+                    <span className={cx('new-price')}>{data.newPrice}đ</span>
                 </div>
                 <div className={cx('status')}>
                     <FaCheck className={cx('icon')} />

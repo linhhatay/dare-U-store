@@ -30,7 +30,7 @@ function Header() {
 
     useEffect(() => {
         function handleScroll() {
-            if (window.scrollY > 150) {
+            if (window.scrollY > 200) {
                 setSticky(true);
             } else {
                 setSticky(false);
@@ -67,21 +67,23 @@ function Header() {
                     </ul>
                 </div>
             </div>
-            <div className={cx(['main', sticky && 'sticky'])}>
-                <div className={cx('mobile-nav')} onClick={openModal}>
-                    <HiOutlineMenu className={cx('mobile-nav-btn')} />
-                    MENU
+
+            <div className={cx([sticky && 'sticky'])}>
+                <div className={cx(['main', sticky && 'sticky'])}>
+                    <div className={cx('mobile-nav')} onClick={openModal}>
+                        <HiOutlineMenu className={cx('mobile-nav-btn')} />
+                    </div>
+                    <Link to={config.routes.home} className={cx('back')}>
+                        <img
+                            className={cx('logo')}
+                            src="https://dareu.com.vn/wp-content/uploads/2021/01/dareulogo.png"
+                            alt="logo"
+                        />
+                    </Link>
+                    <Search />
+                    <Navigation />
+                    <Cart />
                 </div>
-                <Link to={config.routes.home} className={cx('back')}>
-                    <img
-                        className={cx('logo')}
-                        src="https://dareu.com.vn/wp-content/uploads/2021/01/dareulogo.png"
-                        alt="logo"
-                    />
-                </Link>
-                <Search />
-                <Navigation />
-                <Cart />
             </div>
 
             {modalIsOpen && (

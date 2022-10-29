@@ -8,8 +8,61 @@ import Portal from '~/components/Portal';
 import Product from '~/components/Product';
 import Sidebar from '~/layouts/components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
+import Filter from '~/layouts/components/Sidebar/Filter';
 
 const cx = classNames.bind(styles);
+
+const COLOR_FILTER = [
+    {
+        item: 'Màu cam',
+        count: 1,
+    },
+    {
+        item: 'Màu đỏ',
+        count: 2,
+    },
+    {
+        item: 'Màu xanh',
+        count: 4,
+    },
+    {
+        item: 'Màu đen',
+        count: 36,
+    },
+    {
+        item: 'Màu trắng',
+        count: 14,
+    },
+    {
+        item: 'Màu vàng',
+        count: 2,
+    },
+    {
+        item: 'Màu cam',
+        count: 1,
+    },
+];
+
+const FILTER_PRICE = [
+    {
+        item: 'Trên 2 triệu',
+        count: 1,
+    },
+    {
+        item: 'Dưới 500 ngàn',
+        count: 34,
+    },
+    {
+        item: 'Từ 500 - 1 triệu',
+        count: 31,
+    },
+    {
+        item: '1 triệu - 2 triệu',
+        count: 9,
+    },
+];
+
+const PRODUCTS = [{ item: 'Bàn phím' }, { item: 'Chuột' }, { item: 'Phụ kiện' }];
 
 function Store() {
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -45,7 +98,11 @@ function Store() {
                 </div>
             </div>
             <div className={cx('container')}>
-                <Sidebar />
+                <Sidebar>
+                    <Filter title="Màu sắc" data={COLOR_FILTER} />
+                    <Filter title="Khoảng giá" data={FILTER_PRICE} />
+                    <Filter title="Sản phẩm" data={PRODUCTS} />
+                </Sidebar>
                 <div className={cx('content')}>
                     {product.data.map((item, index) => (
                         <Product data={item} key={index} />

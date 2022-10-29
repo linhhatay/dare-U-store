@@ -22,6 +22,7 @@
     text-transform: uppercase;
 
     &:hover {
+        cursor: pointer;
         color: rgba(17, 17, 17, 0.85);
     }
 }
