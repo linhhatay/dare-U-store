@@ -1,0 +1,325 @@
+.wrapper {
+    min-height: 100px;
+}
+
+.banner {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4db7b3;
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #f1f1f1;
+    text-align: center;
+    height: 100%;
+
+    @media screen and (max-width: 549px) {
+        padding: 0px 41px;
+    }
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.84;
+    color: #fff;
+
+    @media screen and (max-width: 549px) {
+        font-size: 22px;
+    }
+}
+
+.label {
+    margin: 16px 0;
+    opacity: 0.84;
+
+    @media screen and (max-width: 549px) {
+        font-size: 11px;
+        margin: 11px 0;
+    }
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+
+    span {
+        padding: 20px 5px 5px 5px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.06);
+        font-size: 48px;
+        border-radius: 5px;
+        margin: 0 3px;
+        width: 33.33%;
+        line-height: 80%;
+        font-weight: 500;
+
+        @media screen and (max-width: 549px) {
+            font-size: 33px;
+        }
+    }
+
+    strong {
+        opacity: 0.7;
+        text-transform: uppercase;
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+
+        @media screen and (max-width: 549px) {
+            font-size: 10px;
+        }
+    }
+}
+
+// Suggestion
+.suggestion {
+    overflow: hidden;
+    margin-top: 15px;
+    padding: 0 15px 30px 15px;
+}
+
+// Banner
+.banner-layers {
+    display: flex;
+
+    div {
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 849px) {
+        flex-direction: column;
+    }
+}
+
+// Nav
+.nav {
+    display: flex;
+    margin: 30px auto 0 auto;
+    max-width: 1370px;
+
+    @media screen and (max-width: 549px) {
+        flex-direction: column;
+    }
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 33.33%;
+    padding: 0 15px 30px 15px;
+
+    div {
+        width: 100%;
+        padding: 0 15px 30px 15px;
+        -webkit-box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 22%);
+        box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 22%);
+        transition: opacity 0.3s, transform 0.3s, background-color 0.3s, -webkit-transform 0.3s;
+
+        &:hover {
+            cursor: pointer;
+            -webkit-transform: translateY(-6px);
+            -ms-transform: translateY(-6px);
+            transform: translateY(-6px);
+            -webkit-box-shadow: 0px 30px 40px 0px rgb(0 0 0 / 20%);
+            box-shadow: 0px 30px 40px 0px rgb(0 0 0 / 20%);
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+
+    h2 {
+        line-height: 1.3;
+        text-align: center;
+        color: #555;
+        font-weight: 600;
+        font-size: 23px;
+        width: 100%;
+        padding: 10px 10px 0px 10px;
+    }
+
+    @media screen and (max-width: 849px) {
+        width: 100%;
+    }
+}
+
+// Contact
+.contact {
+    margin: 80px auto 0 auto;
+    background-color: #6fa6d4;
+
+    @media screen and (max-width: 549px) {
+        padding: 14px;
+    }
+}
+
+.contact-inner {
+    position: relative;
+    top: -40px;
+    background-color: #fff;
+    max-width: 1340px;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 3px 6px -4px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+
+    @media screen and (max-width: 549px) {
+        flex-direction: column;
+    }
+}
+
+.contact-item {
+    display: flex;
+    padding: 40px;
+    width: 50%;
+
+    @media screen and (max-width: 849px) {
+        width: 100%;
+    }
+
+    &:first-child {
+        border-right: 1px solid #ddd;
+
+        @media screen and (max-width: 849px) {
+            border-bottom: 1px solid #ddd;
+            border-right: unset;
+        }
+    }
+}
+
+.contact-icon {
+    width: 60px;
+
+    img {
+        width: 100%;
+        padding-top: 4px;
+    }
+}
+
+.contact-desc {
+    margin-left: 16px;
+    flex: 1;
+
+    h3 {
+        font-size: 20px;
+        color: #555;
+        margin-bottom: 10px;
+        font-weight: 500;
+
+        @media screen and (max-width: 849px) {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    p {
+        margin-bottom: 20px;
+        color: #777;
+    }
+}
+
+.send-email,
+.call {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 8px;
+    justify-content: center;
+    color: #fff;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(0.9);
+    }
+}
+
+.send-email {
+    background-color: #4db7b3;
+}
+
+.call {
+    background-color: #d94613;
+}
+
+.socials {
+    text-align: center;
+    color: #fff;
+    padding-bottom: 60px;
+}
+
+.social-icon {
+    cursor: pointer;
+    font-size: 22px;
+    margin: 0 4px;
+}
+
+.carousel {
+    // display: flex;
+    overflow: hidden;
+
+    &:hover {
+        .prev-arrow,
+        .next-arrow {
+            display: flex;
+        }
+    }
+}
+
+.carousel-item {
+    width: 100%;
+    object-fit: cover;
+    transition: 2s ease;
+}
+
+.prev-arrow,
+.next-arrow {
+    display: none;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    -webkit-box-shadow: 0 -150px 15px 0 rgba(0 0 0 / 30%);
+    box-shadow: 0 -150px 15px 0 rgba(0 0 0 / 30%);
+    z-index: 1;
+
+    &:hover {
+        cursor: pointer;
+        color: #4db7b3;
+    }
+
+    @media screen and (max-width: 549px) {
+        display: flex;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+}
+
+.prev-arrow {
+    left: 0px;
+}
+
+.next-arrow {
+    right: 0px;
+}

@@ -1,0 +1,63 @@
+.wrapper {
+    padding: 0 10px 20px 10px;
+}
+
+.image {
+    position: relative;
+
+    .badge {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: -8px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: #d94613;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    img {
+        display: flex;
+        width: 100%;
+    }
+}
+
+.info {
+    color: #777;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.name {
+}
+
+.old-price {
+    text-decoration: line-through;
+    margin-right: 4px;
+}
+
+.new-price {
+    color: black;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    color: green;
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        margin-right: 4px;
+    }
+}

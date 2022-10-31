@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 1.28rem;
+
+    span {
+        display: flex;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+    }
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-right: 6px;
+}
+
+.primary {
+    color: #fff;
+    background-color: #4db7b3;
+}
+
+.rounded {
+    border-radius: 999px;
+}
+
+.text {
+}
