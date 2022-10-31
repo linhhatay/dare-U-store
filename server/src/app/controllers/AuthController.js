@@ -103,28 +103,27 @@ class AuthController {
       if (err) {
         return res.status(500).json({ msg: "You're not authenticated" });
       }
-    });
+      const newAccessToken = authController.generateAccessToken({
+        id: user._id,
+        role: user.role,
+      });
 
-    const newAccessToken = authController.generateAccessToken({
-      id: user._id,
-      role: user.role,
-    });
+      const newRefreshToken = createRefreshToken({
+        id: user._id,
+        role: user.role,
+      });
 
-    const newRefreshToken = createRefreshToken({
-      id: user._id,
-      role: user.role,
-    });
+      res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: false,
+        path: "/",
+        sameSite: "strict",
+      });
 
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: false,
-      path: "/",
-      sameSite: "strict",
-    });
-
-    res.status(200).json({
-      accessToken: newAccessToken,
-      refreshToken: newRefreshToken,
+      res.status(200).json({
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+      });
     });
   }
 }

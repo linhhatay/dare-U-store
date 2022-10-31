@@ -3,23 +3,21 @@ const Product = require("../models/Product");
 class ProductController {
   async create(req, res) {
     try {
-      const { image, name, oldPrice, newPrice, color, amount, description } =
-        req.body;
+      const { images, tile, price, content, category, description } = req.body;
       const newProduct = await new Product({
-        image,
-        name,
-        oldPrice,
-        newPrice,
-        color,
-        amount,
+        images,
+        tile,
+        price,
+        content,
+        category,
         description,
       });
 
       await newProduct.save();
 
-      res.status(200).json({ newProduct });
+      res.status(200).json({ message: "Created a product!" });
     } catch (error) {
-      res.status(400).json({ error: error });
+      res.status(400).json({ message: error.message });
     }
   }
 
@@ -28,7 +26,7 @@ class ProductController {
       const products = await Product.find({});
       res.status(200).json(products);
     } catch (error) {
-      res.status(400).json({ error: error });
+      res.status(400).json({ message: error.message });
     }
   }
 
@@ -41,9 +39,9 @@ class ProductController {
         { new: true }
       );
 
-      res.status(200).json(product);
+      res.status(200).json({ message: "Updated a product!" });
     } catch (error) {
-      res.status(400).json({ error: error });
+      res.status(400).json({ message: error.message });
     }
   }
 
@@ -52,7 +50,7 @@ class ProductController {
       await Product.findByIdAndDelete(req.params.id);
       res.status(200).json("Delete successfully");
     } catch (error) {
-      res.status(400).json({ error: error });
+      res.status(400).json({ message: error.message });
     }
   }
 }

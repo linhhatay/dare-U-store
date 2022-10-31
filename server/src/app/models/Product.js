@@ -7,26 +7,32 @@ const Product = new Schema(
       type: "string",
       required: true,
     },
-    name: {
+    title: {
       type: "string",
       required: true,
     },
-    oldPrice: {
-      type: "string",
-    },
-    newPrice: {
-      type: "string",
-    },
-    color: {
-      type: "string",
-      required: true,
-    },
-    amount: {
+    price: {
       type: "string",
       required: true,
     },
     description: {
       type: "string",
+      required: true,
+    },
+    color: {
+      type: "string",
+    },
+    size: {
+      type: "string",
+      default: false,
+    },
+    category: {
+      type: "string",
+      required: true,
+    },
+    sold: {
+      type: "number",
+      default: 0,
     },
   },
   {
