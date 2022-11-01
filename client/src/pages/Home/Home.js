@@ -75,10 +75,7 @@ function Home() {
             </div>
             <div className={cx('suggestion')}>
                 <Slider {...settings} className={cx('carousel')}>
-                    {product.data.map((item, index) => (
-                        <Product data={item} key={index} />
-                    ))}
-                    {product.data.map((item, index) => (
+                    {product.data.slice(0, 10).map((item, index) => (
                         <Product data={item} key={index} />
                     ))}
                 </Slider>

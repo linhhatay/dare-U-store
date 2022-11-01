@@ -105,7 +105,7 @@ function Navigation() {
                 <div className={cx('separate')}></div>
 
                 <div>
-                    <MenuItem title={auth.data.accessToken ? 'Tài khoản' : 'Đăng Nhập'} to={config.routes.auth} />
+                    <MenuItem title={auth.accessToken ? 'Tài khoản' : 'Đăng Nhập'} to={config.routes.auth} />
                 </div>
             </Menu>
         </div>

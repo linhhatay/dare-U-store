@@ -19,8 +19,8 @@ function Auth() {
                     <Separate />
                 </header>
                 <div className={cx('container')}>
-                    <div className={cx('woocommerce')}>
-                        {auth.data.accessToken ? (
+                    <div className={cx(['woocommerce', auth.accessToken && 'account'])}>
+                        {auth.accessToken ? (
                             <div>
                                 <p className={cx('notify')}>
                                     Xin chào <strong>Linh</strong> (không phải tài khoản <strong>Linh</strong>? Hãy
@@ -28,8 +28,7 @@ function Auth() {
                                 </p>
                                 <p className={cx('notify')}>
                                     Từ trang quản lý tài khoản bạn có thể xem <a>đơn hàng mới</a>, quản lý{' '}
-                                    <a>địa chỉ giao hàng và thanh toán</a>, and{' '}
-                                    <a>sửa mật khẩu và thông tin tài khoản</a>
+                                    <a>địa chỉ giao hàng và thanh toán</a>, <a>sửa mật khẩu và thông tin tài khoản</a>
                                 </p>
                                 <div className={cx('dashboard')}>
                                     <div>
@@ -37,12 +36,6 @@ function Auth() {
                                     </div>
                                     <div>
                                         <a>Tải xuống</a>
-                                    </div>
-                                    <div>
-                                        <a>Địa chỉ</a>
-                                    </div>
-                                    <div>
-                                        <a>Tài khoản</a>
                                     </div>
                                 </div>
                             </div>

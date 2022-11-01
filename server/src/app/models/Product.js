@@ -22,7 +22,7 @@ const Product = new Schema(
     color: {
       type: String,
     },
-    switch: {
+    sw: {
       type: String,
     },
     category: {

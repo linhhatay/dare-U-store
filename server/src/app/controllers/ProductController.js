@@ -3,14 +3,17 @@ const Product = require("../models/Product");
 class ProductController {
   async create(req, res) {
     try {
-      const { images, tile, price, content, category, description } = req.body;
+      const { image, title, price, category, description, sold, color, sw } =
+        req.body;
       const newProduct = await new Product({
-        images,
-        tile,
+        image,
+        title,
         price,
-        content,
         category,
         description,
+        sold,
+        color,
+        sw,
       });
 
       await newProduct.save();
