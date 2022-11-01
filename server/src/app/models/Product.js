@@ -4,34 +4,33 @@ const Schema = mongoose.Schema;
 const Product = new Schema(
   {
     image: {
-      type: "string",
+      type: String,
       required: true,
     },
     title: {
-      type: "string",
+      type: String,
       required: true,
     },
     price: {
-      type: "string",
+      type: String,
       required: true,
     },
     description: {
-      type: "string",
+      type: String,
       required: true,
     },
     color: {
-      type: "string",
+      type: String,
     },
-    size: {
-      type: "string",
-      default: false,
+    switch: {
+      type: String,
     },
     category: {
-      type: "string",
+      type: String,
       required: true,
     },
     sold: {
-      type: "number",
+      type: Number,
       default: 0,
     },
   },

@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const handlebars = require("express-handlebars");
+const cookieParser = require("cookie-parser");
 const app = express();
 const port = 5000;
 
@@ -22,6 +23,7 @@ app.use(
 );
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 app.use(morgan("combined"));
 
 app.engine("hbs", handlebars.engine({ extname: ".hbs" }));

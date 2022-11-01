@@ -4,21 +4,17 @@ const Schema = mongoose.Schema;
 const User = new Schema(
   {
     email: {
-      type: "string",
+      type: String,
       required: true,
       unique: true,
     },
-    fullname: {
-      type: "string",
-      default: "",
-    },
     password: {
-      type: "string",
+      type: String,
       required: true,
     },
-    role: {
-      type: "string",
-      default: "user",
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
   },
   {

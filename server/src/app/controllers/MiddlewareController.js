@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 class MiddlewareController {
   async verifyToken(req, res, next) {
     const token = req.headers.token;
-    const refreshToken = req.cookies.refreshToken;
 
     if (token) {
       const accessToken = token.split(" ")[1];
@@ -20,7 +19,7 @@ class MiddlewareController {
   }
 
   async authorization(req, res, next) {
-    if (req.user.role === "admin") {
+    if (req.user.isAdmin) {
       next();
     } else {
       res.status(403).json("You're not allowed to do that!");

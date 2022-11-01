@@ -36,7 +36,7 @@ class AuthController {
         },
       });
     } catch (error) {
-      res.status(500).json({ error: error });
+      res.status(500).json({ message: error.message });
     }
   }
 
@@ -57,12 +57,12 @@ class AuthController {
       if (user && invalidPassword) {
         const accessToken = createAccessToken({
           id: user._id,
-          role: user.role,
+          isAdmin: user.isAdmin,
         });
 
         const refreshToken = createRefreshToken({
           id: user._id,
-          role: user.role,
+          isAdmin: user.isAdmin,
         });
 
         res.cookie("refreshToken", refreshToken, {
@@ -72,17 +72,17 @@ class AuthController {
           sameSite: "strict",
         });
 
+        const { password, ...other } = user._doc;
         return res.status(200).json({
           msg: "Login Success!",
           accessToken,
           user: {
-            ...user._doc,
-            password: "",
+            ...other,
           },
         });
       }
     } catch (error) {
-      res.status(400).json({ error: error });
+      res.status(400).json({ message: error.message });
     }
   }
 
@@ -91,38 +91,33 @@ class AuthController {
       res.clearCookie("refreshToken");
       res.status(200).json("Logout successfully");
     } catch (error) {
-      res.status(400).json({ error: error });
+      res.status(400).json({ message: error.message });
     }
   }
 
   async refreshToken(req, res) {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) return res.status(401).json("You're not authenticated");
-
     jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
       if (err) {
         return res.status(500).json({ msg: "You're not authenticated" });
       }
-      const newAccessToken = authController.generateAccessToken({
+      const newAccessToken = createAccessToken({
         id: user._id,
-        role: user.role,
+        isAdmin: user.isAdmin,
       });
-
       const newRefreshToken = createRefreshToken({
         id: user._id,
-        role: user.role,
+        isAdmin: user.isAdmin,
       });
-
-      res.cookie("refreshToken", refreshToken, {
+      res.cookie("refreshToken", newRefreshToken, {
         httpOnly: true,
         secure: false,
         path: "/",
         sameSite: "strict",
       });
-
       res.status(200).json({
         accessToken: newAccessToken,
-        refreshToken: newRefreshToken,
       });
     });
   }
