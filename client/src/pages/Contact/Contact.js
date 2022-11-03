@@ -65,7 +65,7 @@ function Contact() {
                     </li>
                 </ul>
                 <div className={cx('form')}>
-                    <input type="text" placeholder="Nhập serial" spellCheck={false} />
+                    <input type="text" placeholder="Nhập serial" spellCheck="false" />
                     <Button rounded className={cx('btn')}>
                         CHECK
                     </Button>

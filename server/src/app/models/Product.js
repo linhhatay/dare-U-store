@@ -16,14 +16,14 @@ const Product = new Schema(
       required: true,
     },
     description: {
-      type: String,
-      required: true,
+      type: Array,
+      require: true,
     },
     color: {
-      type: String,
+      type: Array,
     },
     sw: {
-      type: String,
+      type: Array,
     },
     category: {
       type: String,

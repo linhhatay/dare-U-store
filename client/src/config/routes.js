@@ -7,6 +7,8 @@ const routes = {
     auth: '/auth',
     admin: '/',
     details: '/:id',
+    cart: '/cart',
+    pay: '/pay',
 };
 
 export default routes;

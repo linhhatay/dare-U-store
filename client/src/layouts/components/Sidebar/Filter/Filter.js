@@ -13,7 +13,7 @@ function Filter({ title, data }) {
             <ul className={cx('list')}>
                 {data.map((filter, index) => (
                     <li className={cx('item')} key={index}>
-                        <a>{filter.item}</a>
+                        <a href="">{filter.item}</a>
                         {filter.count && <span className={cx('count')}>({filter.count})</span>}
                     </li>
                 ))}

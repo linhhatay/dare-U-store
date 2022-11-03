@@ -97,7 +97,7 @@ function Footer() {
                                 Giúp bạn luôn cập nhật những thông tin mới nhất về các sản phẩm Dareu.
                             </p>
                             <div className={cx('form')}>
-                                <input placeholder="Your Email (require)" spellCheck={false} />
+                                <input placeholder="Your Email (require)" spellCheck="false" />
                                 <Button rounded className={cx('btn')}>
                                     SIGN UP
                                 </Button>

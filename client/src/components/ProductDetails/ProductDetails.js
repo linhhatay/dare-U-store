@@ -1,5 +1,7 @@
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import { FaCartPlus } from 'react-icons/fa';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import {
     TiSocialFacebook,
     TiSocialGooglePlus,
@@ -7,13 +9,14 @@ import {
     TiSocialPinterest,
     TiSocialTwitter,
 } from 'react-icons/ti';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import Sidebar from '~/layouts/components/Sidebar';
 import Filter from '~/layouts/components/Sidebar/Filter';
 import Button from '../Button';
 import Separate from '../Separate';
 import styles from './ProductDetails.module.scss';
-import Product from '../Product/Product';
 
 const cx = classNames.bind(styles);
 
@@ -26,6 +29,26 @@ const BROWSE_FILTER = [
 ];
 
 function ProductDetails() {
+    const { id } = useParams();
+    const { product } = useSelector((state) => state);
+    const [details, setDetails] = useState([]);
+    const [quantity, setQuantity] = useState(1);
+
+    const handleSale = (price, sold) => {
+        let newPrice = Number(price) - Math.floor(Number((price * sold) / 100));
+        return newPrice;
+    };
+
+    useEffect(() => {
+        if (id) {
+            product.data.forEach((item) => {
+                if (item._id === id) {
+                    setDetails(item);
+                }
+            });
+        }
+    }, [id, product]);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -42,51 +65,61 @@ function ProductDetails() {
                 <div className={cx('inner')}>
                     <div className={cx('content')}>
                         <div className={cx('image')}>
-                            <div className={cx('badge')}>-15%</div>
-                            <img src="https://dareu.com.vn/wp-content/uploads/2022/02/ban-phim-khong-day-dareu-ek868-01.jpg" />
+                            <div className={cx('badge')}>-{details.sale}%</div>
+                            <img src={details.image} alt="" />
                         </div>
                         <div className={cx('info')}>
-                            <h1 className={cx('name')}>
-                                Bàn phím cơ không dây DAREU EK868 68KEY (SLIM, Brown/ Red D-KAILH switch)
-                            </h1>
+                            <h1 className={cx('name')}>{details.title}</h1>
                             <Separate />
                             <div className={cx('price')}>
-                                <span>1.166.000₫</span>
-                                <strong>1.099.000₫</strong>
+                                <span>{details.price}đ</span>
+                                <strong>{handleSale(details.price, details.sale)}đ</strong>
                             </div>
-                            <div className={cx('description')}>Bluetooth/ Wired (Type-C)</div>
-                            <div className={cx('description')}>D-KAILH switch</div>
-                            <div className={cx('description')}>Batterry: 2.000mAh</div>
+                            {details.description?.map((item, index) => (
+                                <li className={cx('description')} key={index}>
+                                    {item}
+                                </li>
+                            ))}
                             <table>
                                 <tbody>
-                                    <tr>
-                                        <th>Màu sắc</th>
-                                        <td>
-                                            <select>
-                                                <option>Chọn một tùy chọn</option>
-                                                <option>Màu đen</option>
-                                                <option>Màu trắng</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>SWITCH</th>
-                                        <td>
-                                            <select>
-                                                <option>Chọn một tùy chọn</option>
-                                                <option>BLUE</option>
-                                                <option>BROWN</option>
-                                                <option>RED</option>
-                                            </select>
-                                        </td>
-                                    </tr>
+                                    {details.color?.length > 0 && (
+                                        <tr>
+                                            <th>Màu sắc</th>
+                                            <td>
+                                                <select>
+                                                    <option>Chọn một tùy chọn</option>
+                                                    {details.color.map((item, index) => (
+                                                        <option key={index}>{item}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {details.sw?.length > 0 && (
+                                        <tr>
+                                            <th>SWITCH</th>
+                                            <td>
+                                                <select>
+                                                    <option>Chọn một tùy chọn</option>
+                                                    {details.sw.map((item, index) => (
+                                                        <option key={index}>{item}</option>
+                                                    ))}
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    )}
                                 </tbody>
                             </table>
                             <div className={cx('order')}>
                                 <div className={cx('quantity')}>
-                                    <input type="button" value="-" />
-                                    <span>1</span>
-                                    <input type="button" value="+" />
+                                    <input
+                                        type="button"
+                                        value="-"
+                                        onClick={() => setQuantity((prev) => prev - 1)}
+                                        disabled={quantity <= 1 ? true : false}
+                                    />
+                                    <span>{quantity}</span>
+                                    <input type="button" value="+" onClick={() => setQuantity((prev) => prev + 1)} />
                                 </div>
                                 <Button className={cx('add')}>Thêm vào giỏ hàng</Button>
                             </div>
@@ -102,7 +135,7 @@ function ProductDetails() {
                                 </b>
                             </div>
                             <span className={cx('code')}>Mã: N/A</span>
-                            <span className={cx('posted')}>Danh mục: Bàn phím</span>
+                            <span className={cx('posted')}>Danh mục: {details.category}</span>
                             <div className={cx('socials')}>
                                 <TiSocialFacebook className={cx('icons')} />
                                 <TiSocialTwitter className={cx('icons')} />

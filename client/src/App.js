@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { publicRoutes, privateRoutes } from '~/routes';
 import { DefaultLayout } from '~/layouts';
-import Admin from './pages/Admin';
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import * as productRequests from '~/redux/productSlice';
@@ -22,7 +21,7 @@ function App() {
         <Router>
             <div className="App">
                 <Routes>
-                    {routes.map((route, index) => {
+                    {publicRoutes.map((route, index) => {
                         const Page = route.component;
 
                         let Layout = DefaultLayout;

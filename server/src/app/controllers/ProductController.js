@@ -38,7 +38,9 @@ class ProductController {
       const updateProduct = req.body;
       const product = await Product.findByIdAndUpdate(
         { _id: req.params.id },
-        updateProduct,
+        {
+          $set: updateProduct,
+        },
         { new: true }
       );
 

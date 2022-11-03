@@ -75,7 +75,7 @@ function Search() {
                         value={searchValue}
                         type="text"
                         placeholder="Tìm kiếm..."
-                        spellCheck={false}
+                        spellCheck="false"
                         onChange={(e) => setSearchValue(e.target.value)}
                         onFocus={() => setShowResult(true)}
                     />

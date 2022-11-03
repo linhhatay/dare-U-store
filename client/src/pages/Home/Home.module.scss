@@ -4,10 +4,10 @@
 
 .banner {
     height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #4db7b3;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    background-color: #0db7b4;
 }
 
 .banner-content {
@@ -51,7 +51,7 @@
     justify-content: center;
     margin-top: 15px;
     margin-bottom: 10px;
-    width: 100%;
+    width: 50%;
 
     span {
         padding: 20px 5px 5px 5px;
@@ -79,6 +79,10 @@
         @media screen and (max-width: 549px) {
             font-size: 10px;
         }
+    }
+
+    @media screen and (max-width: 549px) {
+        width: 100%;
     }
 }
 
