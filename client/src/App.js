@@ -5,13 +5,13 @@ import { publicRoutes, privateRoutes } from '~/routes';
 import { DefaultLayout } from '~/layouts';
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import * as productRequests from '~/redux/productSlice';
+import { getProducts } from './services/productService';
 
 function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(productRequests.get());
+        getProducts(dispatch);
     }, []);
 
     // const routes = auth.token ? privateRoutes : publicRoutes;

@@ -3,10 +3,15 @@ import classNames from 'classnames/bind';
 import styles from './News.module.scss';
 import Paragraph from './Paragraph';
 import Separate from '~/components/Separate';
+import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
 function News() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('main')}>
@@ -66,9 +71,7 @@ function News() {
                         <Separate />
                         <div className={cx('post')}>
                             <div className={cx('date')}>
-                                <span div className={cx('day')}>
-                                    29
-                                </span>
+                                <span className={cx('day')}>29</span>
                                 <span className={cx('month')}>Th3</span>
                             </div>
                             <p className={cx('label')}>Sản phẩm Dareu nào sử dụng được cho macbook?</p>

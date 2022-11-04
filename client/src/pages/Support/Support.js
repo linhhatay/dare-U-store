@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useEffect } from 'react';
 import { BiChevronRight } from 'react-icons/bi';
 import Button from '~/components/Button';
 import styles from './Support.module.scss';
@@ -74,6 +75,10 @@ const DRIVER_PRODUCTS = [
 ];
 
 function Support() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>

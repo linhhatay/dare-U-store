@@ -65,9 +65,7 @@ function Footer() {
                         <div className={cx('content')}>
                             <div className={cx('post')}>
                                 <div className={cx('time')}>
-                                    <span div className={cx('day')}>
-                                        29
-                                    </span>
+                                    <span className={cx('day')}>29</span>
                                     <span className={cx('month')}>Th3</span>
                                 </div>
                                 <p className={cx('label')}>Sản phẩm Dareu nào sử dụng được cho macbook?</p>

@@ -9,15 +9,15 @@ import styles from './Product.module.scss';
 const cx = classNames.bind(styles);
 
 function Product({ data }) {
-    const handleSale = (price, sold) => {
-        let newPrice = Number(price) - Math.floor(Number((price * sold) / 100));
+    const handleSale = (price, sale) => {
+        let newPrice = Number(price) - Math.floor(Number((price * sale) / 100));
         return newPrice;
     };
 
     return (
         <Link className={cx('wrapper')} to={`/${data._id}`}>
             <div className={cx('image')}>
-                <div className={cx('badge')}>-{data.sold}%</div>
+                <div className={cx('badge')}>-{data.sale}%</div>
                 <img src={data.image} alt="" />
             </div>
             <div className={cx('info')}>

@@ -23,6 +23,7 @@ const publicRoutes = [
     { path: config.routes.pay, component: Pay },
 ];
 
-const privateRoutes = [{ path: config.routes.admin, component: Admin, layout: null }];
-
+const privateRoutes = [
+    // { path: config.routes.admin, component: Admin, layout: null }
+];
 export { publicRoutes, privateRoutes };

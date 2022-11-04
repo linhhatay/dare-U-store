@@ -5,7 +5,7 @@ import Separate from '~/components/Separate';
 
 const cx = classNames.bind(styles);
 
-function Filter({ title, data }) {
+function Filter({ title, data, handleFilter, isFilter }) {
     return (
         <aside className={cx('wrapper')}>
             <span className={cx('title')}>{title}</span>
@@ -13,7 +13,10 @@ function Filter({ title, data }) {
             <ul className={cx('list')}>
                 {data.map((filter, index) => (
                     <li className={cx('item')} key={index}>
-                        <a href="">{filter.item}</a>
+                        {isFilter === filter.item && <span className={cx('close')}>x</span>}
+                        <a href="#" onClick={() => handleFilter(filter.item)}>
+                            {filter.item}
+                        </a>
                         {filter.count && <span className={cx('count')}>({filter.count})</span>}
                     </li>
                 ))}

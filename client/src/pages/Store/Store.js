@@ -37,10 +37,6 @@ const COLOR_FILTER = [
         item: 'Màu vàng',
         count: 2,
     },
-    {
-        item: 'Màu cam',
-        count: 1,
-    },
 ];
 
 const FILTER_PRICE = [
@@ -62,11 +58,36 @@ const FILTER_PRICE = [
     },
 ];
 
-const PRODUCTS = [{ item: 'Bàn phím' }, { item: 'Chuột' }, { item: 'Phụ kiện' }];
+const PRODUCTS = [
+    { item: 'Bàn phím' },
+    { item: 'Chuột' },
+    { item: 'Phụ kiện' },
+    { item: 'Switch' },
+    { item: 'Tai nghe' },
+];
 
 function Store() {
     const [modalIsOpen, setIsOpen] = useState(false);
     const { product } = useSelector((state) => state);
+
+    const [filtered, setFiltered] = useState(product);
+    const [isFilter, setIsFilter] = useState(null);
+
+    const handleFilter = (value) => {
+        var result = [];
+        if (!(isFilter === value)) {
+            product.forEach((item) => {
+                if (item.color.includes(value)) {
+                    result.push(item);
+                }
+            });
+            setIsFilter(value);
+            setFiltered(result);
+        } else {
+            setFiltered(product);
+            setIsFilter(null);
+        }
+    };
 
     function openModal() {
         setIsOpen(true);
@@ -75,6 +96,10 @@ function Store() {
     function closeModal() {
         setIsOpen(false);
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className={cx('wrapper')}>
@@ -99,14 +124,12 @@ function Store() {
             </div>
             <div className={cx('container')}>
                 <Sidebar>
-                    <Filter title="Màu sắc" data={COLOR_FILTER} />
+                    <Filter title="Màu sắc" data={COLOR_FILTER} handleFilter={handleFilter} isFilter={isFilter} />
                     <Filter title="Khoảng giá" data={FILTER_PRICE} />
                     <Filter title="Sản phẩm" data={PRODUCTS} />
                 </Sidebar>
                 <div className={cx('content')}>
-                    {product.data.map((item, index) => (
-                        <Product data={item} key={index} />
-                    ))}
+                    {filtered.length > 0 && filtered.map((item, index) => <Product data={item} key={index} />)}
                 </div>
             </div>
             {modalIsOpen && (

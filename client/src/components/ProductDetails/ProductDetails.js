@@ -15,6 +15,7 @@ import { useParams } from 'react-router-dom';
 import Sidebar from '~/layouts/components/Sidebar';
 import Filter from '~/layouts/components/Sidebar/Filter';
 import Button from '../Button';
+import Product from '../Product/Product';
 import Separate from '../Separate';
 import styles from './ProductDetails.module.scss';
 
@@ -33,21 +34,36 @@ function ProductDetails() {
     const { product } = useSelector((state) => state);
     const [details, setDetails] = useState([]);
     const [quantity, setQuantity] = useState(1);
+    const [suggested, setSuggested] = useState([]);
+    // const suggested = [];
 
-    const handleSale = (price, sold) => {
-        let newPrice = Number(price) - Math.floor(Number((price * sold) / 100));
+    const handleSale = (price, sale) => {
+        let newPrice = Number(price) - Math.floor(Number((price * sale) / 100));
         return newPrice;
     };
 
     useEffect(() => {
-        if (id) {
-            product.data.forEach((item) => {
+        if (id && product.length > 0) {
+            product.forEach((item) => {
                 if (item._id === id) {
                     setDetails(item);
                 }
             });
         }
+        window.scrollTo(0, 0);
     }, [id, product]);
+
+    useEffect(() => {
+        if (product.length > 0 && details) {
+            const result = product.filter((item) => {
+                return item.category === details.category;
+            });
+            const output = result.filter((item) => {
+                return item !== details;
+            });
+            setSuggested(output);
+        }
+    }, [details, product]);
 
     return (
         <div className={cx('wrapper')}>
@@ -147,7 +163,10 @@ function ProductDetails() {
                     </div>
                     <div className={cx('suggested')}>
                         <h3 className={cx('suggested-title')}>Sản phẩm tương tự</h3>
-                        <div className={cx('suggested-list')}>{/* <Product /> */}</div>
+                        <div className={cx('suggested-list')}>
+                            {suggested.length > 0 &&
+                                suggested.map((item, index) => <Product data={item} key={index} />)}
+                        </div>
                     </div>
                 </div>
             </div>

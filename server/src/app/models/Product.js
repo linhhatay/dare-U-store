@@ -29,7 +29,7 @@ const Product = new Schema(
       type: String,
       required: true,
     },
-    sold: {
+    sale: {
       type: Number,
       default: 0,
     },
