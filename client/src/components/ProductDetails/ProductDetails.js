@@ -35,8 +35,6 @@ function ProductDetails() {
     const [details, setDetails] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const [suggested, setSuggested] = useState([]);
-    // const suggested = [];
-
     const handleSale = (price, sale) => {
         let newPrice = Number(price) - Math.floor(Number((price * sale) / 100));
         return newPrice;

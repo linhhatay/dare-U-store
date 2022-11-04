@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import Button from '~/components/Button';
 import styles from './Pay.module.scss';
 
 const cx = classNames.bind(styles);
@@ -35,10 +36,83 @@ function Pay() {
                                 <label>Địa chỉ *</label>
                                 <input type="text" />
                             </div>
+                            {/* <div className={cx('form-group')}>
+                                <label>Tỉnh/ Thành phố *</label>
+                                <select>
+                                    <option>Chọn Tỉnh/ Thành phố</option>
+                                </select>
+                            </div>
+                            <div className={cx('form-group')}>
+                                <label>Quận/ Huyện *</label>
+                                <select>
+                                    <option>Chọn Quận/ Huyện</option>
+                                </select>
+                            </div>
+                            <div className={cx('form-group')}>
+                                <label>Phường/ Xã *</label>
+                                <select>
+                                    <option>Chọn Phường/ Xã</option>
+                                </select>
+                            </div> */}
+                            <div className={cx('note')}>
+                                <label>Ghi chú về đơn hàng (tùy chọn)</label>
+                                <textarea placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className={cx('bill')}></div>
+                <div className={cx('bill')}>
+                    <div className={cx('bill-inner')}>
+                        <h3 className={cx('bill-title')}>Đơn hàng của bạn</h3>
+                        <div className={cx('bill-review')}>
+                            <div className={cx('bill-group')}>
+                                <label>Sản phẩm</label>
+                                <span>Tạm tính</span>
+                            </div>
+                            <div className={cx('bill-group')}>
+                                <label className={cx('product-name')}>
+                                    Bộ phím chuột không dây DAREU MK188G <span>x 1</span>
+                                </label>
+                                <span>289.000đ</span>
+                            </div>
+                            <div className={cx('bill-group')}>
+                                <label>Tạm tính</label>
+                                <span>289.000đ</span>
+                            </div>
+                            <div className={cx('bill-group')}>
+                                <label className={cx('ship')}>Giao hàng</label>
+                                <span className={cx('ship-price')}>
+                                    <strong>Đồng giá: </strong> 30.000đ
+                                </span>
+                            </div>
+                            <div className={cx('bill-group')}>
+                                <label>Tổng</label>
+                                <span>319.000đ</span>
+                            </div>
+                        </div>
+                        <ul className={cx('payment-method')}>
+                            <li className={cx('cod')}>
+                                <div>
+                                    <input type="radio" />
+                                    <label>Thanh toán khi nhận hàng</label>
+                                </div>
+                                <p>Hình thức nhận hàng thanh toán, khách hàng được quyền kiểm tra hàng</p>
+                            </li>
+                            <li className={cx('qr')}>
+                                <div>
+                                    <input type="radio" />
+                                    <label>Quét mã MoMo</label>
+                                </div>
+                                <p>Hãy mở App Momo lên và nhấn Đặt Hàng để quét mã thanh toán</p>
+                            </li>
+                        </ul>
+                        <Button className={cx('order')}>ĐẶT HÀNG</Button>
+                        <p className={cx('privacy')}>
+                            Tất cả thông tin của bạn chỉ được sử dụng cho việc đặt hàng và cải thiện trải nghiệm sản
+                            phẩm. Ngoài ra được Dareu đảm bảo về quyền riêng tư cá nhân theo quy định luật pháp.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );
