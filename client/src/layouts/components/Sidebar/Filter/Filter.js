@@ -12,11 +12,9 @@ function Filter({ title, data, handleFilter, isFilter }) {
             <Separate className={cx('divider')} />
             <ul className={cx('list')}>
                 {data.map((filter, index) => (
-                    <li className={cx('item')} key={index}>
+                    <li className={cx('item')} key={index} onClick={() => handleFilter(filter.item)}>
                         {isFilter === filter.item && <span className={cx('close')}>x</span>}
-                        <a href="#" onClick={() => handleFilter(filter.item)}>
-                            {filter.item}
-                        </a>
+                        <a href="#">{filter.item}</a>
                         {filter.count && <span className={cx('count')}>({filter.count})</span>}
                     </li>
                 ))}

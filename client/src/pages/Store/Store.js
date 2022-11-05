@@ -67,18 +67,54 @@ const PRODUCTS = [
 ];
 
 function Store() {
-    const [modalIsOpen, setIsOpen] = useState(false);
     const { product } = useSelector((state) => state);
-
+    const [modalIsOpen, setIsOpen] = useState(false);
     const [filtered, setFiltered] = useState(product);
     const [isFilter, setIsFilter] = useState(null);
+    const [price, setPrice] = useState([0]);
+
+    // console.log(string.replace(/[^-0-9]/g, ''));
+    const filterPrice = (value) => {
+        const input = value.split('-');
+
+        if (input.length > 1) {
+            for (let i = 0; i < input.length; i++) {
+                if (input[i].length === 1) {
+                    input[i] += '000000';
+                } else if (input[i].length === 3) {
+                    input[i] += '000';
+                }
+            }
+            setPrice([parseInt(input[0]), parseInt(input[1])]);
+        } else {
+            if (input[0].length <= 1) {
+                input[0] += '000000';
+                setPrice([parseInt(input[0]), Infinity]);
+            } else {
+                input[0] += '000';
+                setPrice([0, parseInt(input[0])]);
+            }
+        }
+    };
+
+    const handlerFilerPrice = () => {
+        var result = [];
+        product.forEach((item) => {
+            if (item.price >= price[0] && item.price <= price[1]) {
+                result.push(item);
+            }
+        });
+        setFiltered(result);
+    };
 
     const handleFilter = (value) => {
         var result = [];
         if (!(isFilter === value)) {
             product.forEach((item) => {
-                if (item.color.includes(value)) {
+                if (item.color.includes(value) || item.category === value) {
                     result.push(item);
+                } else {
+                    filterPrice(value.replace(/[^-0-9]/g, ''));
                 }
             });
             setIsFilter(value);
@@ -100,6 +136,10 @@ function Store() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    // useEffect(() => {
+    //     handlerFilerPrice();
+    // }, [isFilter]);
 
     return (
         <div className={cx('wrapper')}>
@@ -125,8 +165,8 @@ function Store() {
             <div className={cx('container')}>
                 <Sidebar>
                     <Filter title="Màu sắc" data={COLOR_FILTER} handleFilter={handleFilter} isFilter={isFilter} />
-                    <Filter title="Khoảng giá" data={FILTER_PRICE} />
-                    <Filter title="Sản phẩm" data={PRODUCTS} />
+                    <Filter title="Khoảng giá" data={FILTER_PRICE} handleFilter={handleFilter} isFilter={isFilter} />
+                    <Filter title="Sản phẩm" data={PRODUCTS} handleFilter={handleFilter} isFilter={isFilter} />
                 </Sidebar>
                 <div className={cx('content')}>
                     {filtered.length > 0 && filtered.map((item, index) => <Product data={item} key={index} />)}
