@@ -6,6 +6,7 @@ import { DefaultLayout } from '~/layouts';
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getProducts } from './services/productService';
+import Notify from './components/Notify';
 
 function App() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
 
     return (
         <Router>
+            <Notify />
             <div className="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {

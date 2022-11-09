@@ -4,10 +4,10 @@ import * as productSlice from '~/redux/productSlice';
 
 export const getProducts = async (dispatch) => {
     try {
-        dispatch(notifySlice.loading());
+        dispatch(notifySlice.loading(true));
         const res = await request.get('/product');
         dispatch(productSlice.get(res));
-        dispatch(notifySlice.success());
+        dispatch(notifySlice.loading(false));
     } catch (error) {
         dispatch(notifySlice.error());
     }

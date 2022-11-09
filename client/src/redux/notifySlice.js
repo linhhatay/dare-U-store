@@ -6,18 +6,21 @@ export const notifySlice = createSlice({
         isLoading: false,
         isSuccess: false,
         isError: false,
+        message: '',
     },
     reducers: {
-        loading: (state) => {
-            state.isLoading = true;
+        loading: (state, action) => {
+            state.isLoading = action.payload;
         },
-        success: (state) => {
+        success: (state, action) => {
+            state.message = action.payload;
             state.isSuccess = true;
-            state.isLoading = false;
+            state.isLoading = action.payload;
         },
-        error: (state) => {
+        error: (state, action) => {
+            state.message = action.payload;
             state.isError = true;
-            state.isLoading = false;
+            state.isLoading = action.payload;
         },
     },
 });

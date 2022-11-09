@@ -29,7 +29,7 @@ class AuthController {
       await newUser.save();
 
       res.status(200).json({
-        msg: "Register Success!",
+        message: "Register Success!",
         user: {
           ...newUser._doc,
           password: "",
@@ -74,7 +74,7 @@ class AuthController {
 
         const { password, ...other } = user._doc;
         return res.status(200).json({
-          msg: "Login Success!",
+          message: "Login Success!",
           accessToken,
           user: {
             ...other,
@@ -89,7 +89,7 @@ class AuthController {
   async logout(req, res) {
     try {
       res.clearCookie("refreshToken");
-      res.status(200).json("Logout successfully");
+      res.status(200).json({ message: "Logout successfully" });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
