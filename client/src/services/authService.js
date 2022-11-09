@@ -7,6 +7,7 @@ export const login = async (data, dispatch, navigate) => {
         dispatch(notifySlice.loading());
         const res = await request.post('/auth/login', data);
         dispatch(authSlice.login(res));
+        localStorage.setItem('firstLogin', true);
         dispatch(notifySlice.success());
         navigate('/');
     } catch (error) {
@@ -25,10 +26,13 @@ export const register = async (data, dispatch) => {
     }
 };
 
-export const logout = async (data, dispatch) => {
+export const logout = async (token, dispatch) => {
     try {
-        const res = await request.post('/auth/logout', data);
-        return res.data;
+        dispatch(notifySlice.loading());
+        await request.post('/auth/logout', {}, token);
+        localStorage.removeItem('firstLogin');
+        dispatch(authSlice.logout());
+        dispatch(notifySlice.success());
     } catch (error) {
         dispatch(notifySlice.error());
     }

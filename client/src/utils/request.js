@@ -9,8 +9,12 @@ export const get = async (path, options) => {
     return response.data;
 };
 
-export const post = async (path, data) => {
-    const response = await request.post(path, data);
+export const post = async (path, data, token) => {
+    const response = await request.post(path, data, {
+        headers: {
+            token: `Bearer ${token}`,
+        },
+    });
     return response.data;
 };
 

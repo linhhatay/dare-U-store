@@ -4,12 +4,19 @@ import Separate from '~/components/Separate';
 import styles from './Auth.module.scss';
 import Register from './Register';
 import Login from './Login';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import * as authService from '~/services/authService';
 
 const cx = classNames.bind(styles);
 
 function Auth() {
     const { auth } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        const data = auth?.accessToken;
+        authService.logout(data, dispatch);
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -24,7 +31,7 @@ function Auth() {
                             <div>
                                 <p className={cx('notify')}>
                                     Xin chào <strong>Linh</strong> (không phải tài khoản <strong>Linh</strong>? Hãy
-                                    thoát ra và đăng nhập vào tài khoản của bạn)
+                                    <a onClick={handleLogout}> thoát ra</a> và đăng nhập vào tài khoản của bạn)
                                 </p>
                                 <p className={cx('notify')}>
                                     Từ trang quản lý tài khoản bạn có thể xem <a>đơn hàng mới</a>, quản lý{' '}

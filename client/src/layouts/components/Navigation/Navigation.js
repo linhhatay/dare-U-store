@@ -79,6 +79,16 @@ const MENU_CONTACT = [
     },
 ];
 
+const MENU_AUTH = [
+    {
+        title: 'Trang tài khoản',
+        to: config.routes.auth,
+    },
+    {
+        title: 'Đăng xuất',
+    },
+];
+
 function Navigation() {
     const { auth } = useSelector((state) => state);
 
@@ -105,7 +115,15 @@ function Navigation() {
                 <div className={cx('separate')}></div>
 
                 <div>
-                    <MenuItem title={auth.accessToken ? 'Tài khoản' : 'Đăng Nhập'} to={config.routes.auth} />
+                    {auth.accessToken ? (
+                        <Dropdown items={MENU_AUTH}>
+                            <div>
+                                <MenuItem title="Tài khoản" dropdown={true} />
+                            </div>
+                        </Dropdown>
+                    ) : (
+                        <MenuItem title="Đăng Nhập" to={config.routes.auth} />
+                    )}
                 </div>
             </Menu>
         </div>
