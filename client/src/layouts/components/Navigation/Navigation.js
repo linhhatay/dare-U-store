@@ -86,6 +86,7 @@ const MENU_AUTH = [
     },
     {
         title: 'Đăng xuất',
+        action: true,
     },
 ];
 

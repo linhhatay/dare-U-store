@@ -2,12 +2,15 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Loading from './Loading';
 import Toast from './Toast';
+import * as notifySlice from '~/redux/notifySlice';
 
 function Notify() {
     const { notify } = useSelector((state) => state);
     const dispatch = useDispatch();
 
-    const handleCloseToast = () => {};
+    const handleCloseToast = () => {
+        dispatch(notifySlice.hide());
+    };
 
     return (
         <div>

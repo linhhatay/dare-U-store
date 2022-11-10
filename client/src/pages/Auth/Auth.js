@@ -31,7 +31,8 @@ function Auth() {
                             <div>
                                 <p className={cx('notify')}>
                                     Xin chào <strong>Linh</strong> (không phải tài khoản <strong>Linh</strong>? Hãy
-                                    <a onClick={handleLogout}> thoát ra</a> và đăng nhập vào tài khoản của bạn)
+                                    <strong onClick={handleLogout}> thoát ra</strong> và đăng nhập vào tài khoản của
+                                    bạn)
                                 </p>
                                 <p className={cx('notify')}>
                                     Từ trang quản lý tài khoản bạn có thể xem <a>đơn hàng mới</a>, quản lý{' '}

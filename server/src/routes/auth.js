@@ -7,6 +7,6 @@ const middlewareController = require("../app/controllers/MiddlewareController");
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.post("/logout", middlewareController.verifyToken, authController.logout);
-router.post("/refresh_token", authController.refreshToken);
+router.post("/refresh_token",middlewareController.verifyToken, authController.refreshToken);
 
 module.exports = router;

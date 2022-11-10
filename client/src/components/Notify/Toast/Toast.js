@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { MdNotifications } from 'react-icons/md';
@@ -10,8 +9,6 @@ const cx = classNames.bind(styles);
 
 const Toast = ({ title, message, error = false, handleCloseToast }) => {
     const [visible, setVisible] = useState(true);
-    const ref = useRef();
-    console.log(ref);
     const classes = cx('toast', {
         error,
     });
@@ -19,7 +16,7 @@ const Toast = ({ title, message, error = false, handleCloseToast }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setVisible(false);
-        }, 3000);
+        }, 5000);
 
         return () => {
             clearTimeout(timer);
@@ -28,7 +25,7 @@ const Toast = ({ title, message, error = false, handleCloseToast }) => {
     }, [message]);
 
     return visible ? (
-        <div className={classes} ref={ref}>
+        <div className={classes}>
             <div className={cx('toast__icon')}>
                 <MdNotifications />
             </div>
