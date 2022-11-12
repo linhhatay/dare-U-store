@@ -9,7 +9,7 @@ import {
     TiSocialPinterest,
     TiSocialTwitter,
 } from 'react-icons/ti';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Sidebar from '~/layouts/components/Sidebar';
@@ -18,6 +18,7 @@ import Button from '../Button';
 import Product from '../Product/Product';
 import Separate from '../Separate';
 import styles from './ProductDetails.module.scss';
+import * as cartSlice from '~/redux/cartSlice';
 
 const cx = classNames.bind(styles);
 
@@ -35,9 +36,32 @@ function ProductDetails() {
     const [details, setDetails] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const [suggested, setSuggested] = useState([]);
+    const [options, setOptions] = useState({});
+
+    const dispatch = useDispatch();
+
     const handleSale = (price, sale) => {
         let newPrice = Number(price) - Math.floor(Number((price * sale) / 100));
         return newPrice;
+    };
+
+    const handleOptions = (e) => {
+        const value = e.target.value;
+        setOptions({
+            ...options,
+            [e.target.name]: value,
+        });
+    };
+
+    const handleAddProduct = () => {
+        const data = {
+            title: details.title,
+            image: details.image,
+            quantity: quantity,
+            price: handleSale(details.price, details.sale) * quantity,
+            options: options,
+        };
+        dispatch(cartSlice.add(data));
     };
 
     useEffect(() => {
@@ -100,7 +124,7 @@ function ProductDetails() {
                                         <tr>
                                             <th>Màu sắc</th>
                                             <td>
-                                                <select>
+                                                <select name="color" onChange={handleOptions}>
                                                     <option>Chọn một tùy chọn</option>
                                                     {details.color.map((item, index) => (
                                                         <option key={index}>{item}</option>
@@ -113,7 +137,7 @@ function ProductDetails() {
                                         <tr>
                                             <th>SWITCH</th>
                                             <td>
-                                                <select>
+                                                <select name="switch" onChange={handleOptions}>
                                                     <option>Chọn một tùy chọn</option>
                                                     {details.sw.map((item, index) => (
                                                         <option key={index}>{item}</option>
@@ -135,7 +159,9 @@ function ProductDetails() {
                                     <span>{quantity}</span>
                                     <input type="button" value="+" onClick={() => setQuantity((prev) => prev + 1)} />
                                 </div>
-                                <Button className={cx('add')}>Thêm vào giỏ hàng</Button>
+                                <Button className={cx('add')} onClick={handleAddProduct}>
+                                    Thêm vào giỏ hàng
+                                </Button>
                             </div>
                             <div className={cx('link')}>
                                 <b>Gian hàng ShopeeMall</b>
