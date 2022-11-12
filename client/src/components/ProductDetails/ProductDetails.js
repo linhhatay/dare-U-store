@@ -37,7 +37,6 @@ function ProductDetails() {
     const [quantity, setQuantity] = useState(1);
     const [suggested, setSuggested] = useState([]);
     const [options, setOptions] = useState({});
-
     const dispatch = useDispatch();
 
     const handleSale = (price, sale) => {

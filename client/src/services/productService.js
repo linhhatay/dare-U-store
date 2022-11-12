@@ -10,5 +10,6 @@ export const getProducts = async (dispatch) => {
         dispatch(notifySlice.loading(false));
     } catch (error) {
         dispatch(notifySlice.error());
+        dispatch(notifySlice.loading(false));
     }
 };

@@ -9,17 +9,47 @@ export const cartSlice = createSlice({
     },
     reducers: {
         add: (state, action) => {
-            // const titleProduct = action.payload.title;
-            // const options = action.payload.options;
-            // const quantity = action.payload.quantity;
-            // const price = action.payload.price;
-            const { title, quantity, price, options, image } = action.payload;
-            state.products.push({ title, options, quantity, price, image });
+            const { title, quantity, price, options } = action.payload;
+
+            const check = state.products.every((item) => {
+                return (
+                    item.title !== title ||
+                    item.options.color !== options.color ||
+                    item.options.switch !== options.switch
+                );
+            });
+
+            if (check) {
+                state.products.push(action.payload);
+            } else {
+                state.products.forEach((element, index) => {
+                    if (
+                        element.title === title &&
+                        element.options.color === options.color &&
+                        element.options.switch === options.switch
+                    ) {
+                        state.products[index].quantity = state.products[index].quantity += quantity;
+                    }
+                });
+            }
+
             state.quantity += quantity;
             state.total += price;
+        },
+        remove: (state, action) => {
+            const { title, quantity, price, options } = action.payload;
+
+            state.products = state.products.filter(
+                (product) =>
+                    product.title !== title ||
+                    product.options.color !== options.color ||
+                    product.options.switch !== options.switch,
+            );
+            state.quantity -= quantity;
+            state.total -= price;
         },
     },
 });
 
-export const { add } = cartSlice.actions;
+export const { add, remove } = cartSlice.actions;
 export default cartSlice.reducer;

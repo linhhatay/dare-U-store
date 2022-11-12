@@ -1,37 +1,25 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { RiShoppingBasketFill } from 'react-icons/ri';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from '~/components/Modal';
 import Portal from '~/components/Portal';
 import Separate from '~/components/Separate';
 import styles from './Cart.module.scss';
+import * as cartSlice from '~/redux/cartSlice';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
 function Cart() {
     const [modalIsOpen, setIsOpen] = useState(false);
-
     const { cart } = useSelector((state) => state);
+    const dispatch = useDispatch();
 
-    const cartFilter = cart.products.reduce((acc, cur) => {
-        const check = acc.some(
-            (item) =>
-                item.title === cur.title &&
-                item.options.color === cur.options.color &&
-                item.options.switch === cur.options.switch,
-        );
-        if (check) {
-            console.log(1);
-        } else {
-            acc.push(cur);
-        }
-
-        return acc;
-    }, []);
-
-    // console.log(cartFilter);
+    const handleDeleteProduct = (product) => {
+        dispatch(cartSlice.remove(product));
+    };
 
     function openModal() {
         setIsOpen(true);
@@ -56,46 +44,61 @@ function Cart() {
                                 <h4 className={cx('title')}>Giỏ hàng</h4>
                                 <Separate className={cx('divider')} />
                                 <div className={cx('orders')}>
-                                    {/* {cart.quantity > 0 ? (
-                                        cartFilter.map((product, index) => (
-                                            <div className={cx('item')} key={index}>
-                                                <div className={cx('delete')}>x</div>
-                                                <a>
-                                                    <img src={product.image} alt="" />
-                                                    {product.title}
-                                                </a>
-                                                <dl className="variation">
-                                                    {product.options.color ? (
-                                                        <>
-                                                            <dt className="variation-color">Màu sắc:</dt>
-                                                            <dd className="variation-color">
-                                                                <p>{product.options?.color}</p>
-                                                            </dd>
-                                                        </>
-                                                    ) : (
-                                                        <></>
-                                                    )}
+                                    {cart.quantity > 0 ? (
+                                        <>
+                                            {cart.products.map((product, index) => (
+                                                <div className={cx('item')} key={index}>
+                                                    <div
+                                                        className={cx('delete')}
+                                                        onClick={() => handleDeleteProduct(product)}
+                                                    >
+                                                        x
+                                                    </div>
+                                                    <a>
+                                                        <img src={product.image} alt="" />
+                                                        {product.title}
+                                                    </a>
+                                                    <dl className="variation">
+                                                        {product.options.color ? (
+                                                            <>
+                                                                <dt className="variation-color">Màu sắc:</dt>
+                                                                <dd className="variation-color">
+                                                                    <p>{product.options?.color}</p>
+                                                                </dd>
+                                                            </>
+                                                        ) : (
+                                                            <></>
+                                                        )}
 
-                                                    {product.options.switch ? (
-                                                        <>
-                                                            <dt className="variation-SWITCH">SWITCH:</dt>
-                                                            <dd className="variation-SWITCH">
-                                                                <p>{product.options?.switch}</p>
-                                                            </dd>
-                                                        </>
-                                                    ) : (
-                                                        <></>
-                                                    )}
-                                                </dl>
-                                                <span className={cx('quantity')}>
-                                                    {product.quantity} x{' '}
-                                                    <span className={cx('price')}>{product.price}đ</span>
-                                                </span>
+                                                        {product.options.switch ? (
+                                                            <>
+                                                                <dt className="variation-SWITCH">SWITCH:</dt>
+                                                                <dd className="variation-SWITCH">
+                                                                    <p>{product.options?.switch}</p>
+                                                                </dd>
+                                                            </>
+                                                        ) : (
+                                                            <></>
+                                                        )}
+                                                    </dl>
+                                                    <span className={cx('quantity')}>
+                                                        {product.quantity} x{' '}
+                                                        <span className={cx('price')}>{product.price}đ</span>
+                                                    </span>
+                                                </div>
+                                            ))}
+                                            <p className={cx('total')}>
+                                                <strong>Tổng số phụ:</strong>
+                                                <span>550.000đ</span>
+                                            </p>
+                                            <div className={cx('buttons')}>
+                                                <Button>XEM GIỎ HÀNG</Button>
+                                                <Button>THANH TOÁN</Button>
                                             </div>
-                                        ))
+                                        </>
                                     ) : (
                                         <p className={cx('message')}>Chưa có sản phẩm trong giỏ hàng.</p>
-                                    )} */}
+                                    )}
                                 </div>
                             </div>
                         </div>
