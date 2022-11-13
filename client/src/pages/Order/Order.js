@@ -1,10 +1,10 @@
 import classNames from 'classnames/bind';
 import Button from '~/components/Button';
-import styles from './Pay.module.scss';
+import styles from './Order.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Pay() {
+function Order() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -118,4 +118,4 @@ function Pay() {
     );
 }
 
-export default Pay;
+export default Order;

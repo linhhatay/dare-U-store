@@ -8,7 +8,8 @@ const routes = {
     admin: '/',
     details: '/:id',
     cart: '/cart',
-    pay: '/pay',
+    order: '/order',
+    payment: '/payment',
 };
 
 export default routes;

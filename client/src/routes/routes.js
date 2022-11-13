@@ -6,7 +6,8 @@ import Store from '~/pages/Store';
 import Admin from '~/pages/Admin';
 import Auth from '~/pages/Auth';
 import Cart from '~/pages/Cart';
-import Pay from '~/pages/Pay';
+import Order from '~/pages/Order';
+import Payment from '~/pages/Payment';
 import ProductDetails from '~/components/ProductDetails';
 
 import config from '~/config';
@@ -20,7 +21,8 @@ const publicRoutes = [
     { path: config.routes.auth, component: Auth },
     { path: config.routes.details, component: ProductDetails },
     { path: config.routes.cart, component: Cart },
-    { path: config.routes.pay, component: Pay },
+    { path: config.routes.order, component: Order },
+    { path: config.routes.payment, component: Payment },
 ];
 
 const privateRoutes = [

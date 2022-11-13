@@ -19,7 +19,7 @@ function Cart() {
     const dispatch = useDispatch();
 
     const handleDeleteProduct = (product) => {
-        dispatch(cartSlice.remove(product));
+        // dispatch(cartSlice.remove(product));
     };
 
     function openModal() {

@@ -1,12 +1,20 @@
 import classNames from 'classnames/bind';
-import { useSelector } from 'react-redux';
+import { AiFillTag } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '~/components/Button';
+import config from '~/config';
+import * as cartSlice from '~/redux/cartSlice';
 import styles from './Cart.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Cart() {
     const { cart } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    const handleDeleteProduct = (product) => {
+        dispatch(cartSlice.remove(product));
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -15,23 +23,22 @@ function Cart() {
                     <div className={cx('list-products')}>
                         <div className={cx('edit')}>
                             <div>
-                                <table>
+                                <table className={cx('table')}>
                                     <thead>
                                         <tr>
-                                            <th className="product-name" colSpan="3">
+                                            <th className={cx('product-name')} colSpan="3">
                                                 Sản phẩm
                                             </th>
-                                            <th className="product-price">Giá</th>
-                                            <th className="product-quantity">Số lượng</th>
-                                            <th className="product-subtotal">Tạm tính</th>
+                                            <th className={cx('product-price')}>Giá</th>
+                                            <th className={cx('product-quantity')}>Số lượng</th>
+                                            <th className={cx('product-subtotal')}>Tạm tính</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr className={cx('product-item')}>
                                             <td className={cx('product-remove')}>
                                                 <a
-                                                    href="https://dareu.com.vn/gio-hang/?remove_item=3d2d8ccb37df977cb6d9da15b76c3f3a&amp;_wpnonce=4ca269d427"
-                                                    className="remove"
+                                                    onClick={handleDeleteProduct}
                                                     aria-label="Xóa sản phẩm này"
                                                     data-product_id="655"
                                                     data-product_sku=""
@@ -80,7 +87,6 @@ function Cart() {
                                                         step="1"
                                                         min="0"
                                                         max=""
-                                                        value="1"
                                                         title="SL"
                                                         size="4"
                                                         placeholder=""
@@ -103,22 +109,33 @@ function Cart() {
                             </div>
                         </div>
                     </div>
-                    <div classNames={cx('bill')}>
-                        <h3 className={cx('bill-title')}>CỘNG GIỎ HÀNG</h3>
-                        <div className={cx('bill-review')}>
-                            <div className={cx('bill-group')}>
-                                <label>Tạm tính</label>
-                                <span>289.000đ</span>
+                    <div className={cx('bill')}>
+                        <div className={cx('bill-inner')}>
+                            <h3 className={cx('bill-title')}>CỘNG GIỎ HÀNG</h3>
+                            <div className={cx('bill-review')}>
+                                <div className={cx('bill-group')}>
+                                    <label>Tạm tính</label>
+                                    <span>289.000đ</span>
+                                </div>
+                                <div className={cx('bill-group')}>
+                                    <label className={cx('ship')}>Giao hàng</label>
+                                    <span className={cx('ship-price')}>
+                                        <strong>Đồng giá: </strong> 30.000đ
+                                    </span>
+                                </div>
+                                <div className={cx('bill-group')}>
+                                    <label>Tổng</label>
+                                    <span>319.000đ</span>
+                                </div>
                             </div>
-                            <div className={cx('bill-group')}>
-                                <label className={cx('ship')}>Giao hàng</label>
-                                <span className={cx('ship-price')}>
-                                    <strong>Đồng giá: </strong> 30.000đ
-                                </span>
-                            </div>
-                            <div className={cx('bill-group')}>
-                                <label>Tổng</label>
-                                <span>319.000đ</span>
+                            <Button className={cx('pay-btn')}>TIẾN HÀNH THANH TOÁN</Button>
+                            <div className={cx('coupons')}>
+                                <h3 className={cx('coupons-title')}>
+                                    <AiFillTag className={cx('coupons-icon')} />
+                                    Phiếu ưu đãi
+                                </h3>
+                                <input type="text" placeholder="Mã ưu đãi" />
+                                <Button className={cx('coupons-btn')}>Áp dụng</Button>
                             </div>
                         </div>
                     </div>
@@ -126,7 +143,9 @@ function Cart() {
             ) : (
                 <>
                     <p className={cx('empty')}>Chưa có sản phẩm nào trong giỏ hàng.</p>
-                    <Button className={cx('back')}>Quay trở lại cửa hàng</Button>
+                    <Button to={config.routes.store} className={cx('back')}>
+                        Quay trở lại cửa hàng
+                    </Button>
                 </>
             )}
         </div>

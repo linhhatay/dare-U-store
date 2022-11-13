@@ -117,7 +117,7 @@ function ProductDetails() {
                                     {item}
                                 </li>
                             ))}
-                            <table>
+                            <table className={cx('table')}>
                                 <tbody>
                                     {details.color?.length > 0 && (
                                         <tr>
