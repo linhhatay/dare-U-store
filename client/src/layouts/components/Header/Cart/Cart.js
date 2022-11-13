@@ -9,6 +9,7 @@ import Separate from '~/components/Separate';
 import styles from './Cart.module.scss';
 import * as cartSlice from '~/redux/cartSlice';
 import Button from '~/components/Button';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -92,7 +93,7 @@ function Cart() {
                                                 <span>550.000đ</span>
                                             </p>
                                             <div className={cx('buttons')}>
-                                                <Button>XEM GIỎ HÀNG</Button>
+                                                <Button to={config.routes.cart}>XEM GIỎ HÀNG</Button>
                                                 <Button>THANH TOÁN</Button>
                                             </div>
                                         </>
