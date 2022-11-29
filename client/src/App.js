@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from '~/routes';
 import { DefaultLayout } from '~/layouts';
 import { Fragment, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from './services/productService';
 import Notify from './components/Notify';
 import * as authService from '~/services/authService';

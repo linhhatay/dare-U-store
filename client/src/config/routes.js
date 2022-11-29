@@ -10,6 +10,7 @@ const routes = {
     cart: '/cart',
     order: '/order',
     payment: '/payment',
+    insurance: '/insurance',
 };
 
 export default routes;

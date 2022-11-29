@@ -1,10 +1,14 @@
 import classNames from 'classnames/bind';
+import { useSelector } from 'react-redux';
 import Button from '~/components/Button';
 import styles from './Order.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Order() {
+    const { cart } = useSelector((state) => state);
+    const { products, total } = cart;
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -69,15 +73,17 @@ function Order() {
                                 <label>Sản phẩm</label>
                                 <span>Tạm tính</span>
                             </div>
-                            <div className={cx('bill-group')}>
-                                <label className={cx('product-name')}>
-                                    Bộ phím chuột không dây DAREU MK188G <span>x 1</span>
-                                </label>
-                                <span>289.000đ</span>
-                            </div>
+                            {products.map((product, index) => (
+                                <div className={cx('bill-group')} key={index}>
+                                    <label className={cx('product-name')}>
+                                        {product.title} <span>x {product.quantity}</span>
+                                    </label>
+                                    <span>{product.price}đ</span>
+                                </div>
+                            ))}
                             <div className={cx('bill-group')}>
                                 <label>Tạm tính</label>
-                                <span>289.000đ</span>
+                                <span>{total}đ</span>
                             </div>
                             <div className={cx('bill-group')}>
                                 <label className={cx('ship')}>Giao hàng</label>
@@ -87,7 +93,7 @@ function Order() {
                             </div>
                             <div className={cx('bill-group')}>
                                 <label>Tổng</label>
-                                <span>319.000đ</span>
+                                <span>{total + 30000}đ</span>
                             </div>
                         </div>
                         <ul className={cx('payment-method')}>

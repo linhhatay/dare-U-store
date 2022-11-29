@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 function Product({ data }) {
     const handleSale = (price, sale) => {
         let newPrice = Number(price) - Math.floor(Number((price * sale) / 100));
-        return newPrice;
+        return (Math.round(newPrice / 1000) * 1000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     };
 
     return (

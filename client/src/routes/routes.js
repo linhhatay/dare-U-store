@@ -8,6 +8,7 @@ import Auth from '~/pages/Auth';
 import Cart from '~/pages/Cart';
 import Order from '~/pages/Order';
 import Payment from '~/pages/Payment';
+import Insurance from '~/pages/Contact/Insurance';
 import ProductDetails from '~/components/ProductDetails';
 
 import config from '~/config';
@@ -23,6 +24,7 @@ const publicRoutes = [
     { path: config.routes.cart, component: Cart },
     { path: config.routes.order, component: Order },
     { path: config.routes.payment, component: Payment },
+    { path: config.routes.insurance, component: Insurance },
 ];
 
 const privateRoutes = [

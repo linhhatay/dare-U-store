@@ -12,8 +12,8 @@ function DropdownItem({ data }) {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        const data = auth?.accessToken;
-        authService.logout(data, dispatch);
+        const token = auth?.accessToken;
+        authService.logout(token, dispatch);
     };
 
     return (

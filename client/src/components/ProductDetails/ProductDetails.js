@@ -41,7 +41,7 @@ function ProductDetails() {
 
     const handleSale = (price, sale) => {
         let newPrice = Number(price) - Math.floor(Number((price * sale) / 100));
-        return newPrice;
+        return Math.round(newPrice / 1000) * 1000;
     };
 
     const handleOptions = (e) => {
@@ -109,8 +109,13 @@ function ProductDetails() {
                             <h1 className={cx('name')}>{details.title}</h1>
                             <Separate />
                             <div className={cx('price')}>
-                                <span>{details.price}đ</span>
-                                <strong>{handleSale(details.price, details.sale)}đ</strong>
+                                <span>{details.price?.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
+                                <strong>
+                                    {handleSale(details.price, details.sale)
+                                        .toString()
+                                        .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                                    đ
+                                </strong>
                             </div>
                             {details.description?.map((item, index) => (
                                 <li className={cx('description')} key={index}>

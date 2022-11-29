@@ -1,18 +1,13 @@
 import classNames from 'classnames/bind';
-import { RiShoppingBasketFill } from 'react-icons/ri';
 import { FaGamepad, FaHeadphones, FaKeyboard, FaBook, FaShoppingCart, FaBuilding } from 'react-icons/fa';
 import { AiTwotoneSetting } from 'react-icons/ai';
 import { MdDownload } from 'react-icons/md';
 import { GrDownloadOption } from 'react-icons/gr';
 import { ImSearch } from 'react-icons/im';
-import { useState } from 'react';
 
 import config from '~/config';
 import styles from './Navigation.module.scss';
 import Dropdown from '~/components/Popper/Dropdown';
-import Modal from '~/components/Modal';
-import Portal from '~/components/Portal';
-import Separate from '~/components/Separate';
 import Menu, { MenuItem } from './Menu';
 import { useSelector } from 'react-redux';
 
@@ -76,6 +71,7 @@ const MENU_CONTACT = [
     {
         icon: <FaBuilding />,
         title: 'Địa chỉ bảo hành',
+        to: config.routes.insurance,
     },
 ];
 

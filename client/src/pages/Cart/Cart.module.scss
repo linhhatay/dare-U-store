@@ -151,6 +151,15 @@
         padding: 0 7px;
         min-height: 34px;
     }
+
+    span {
+        max-width: 36px;
+        width: 36px;
+        text-align: center;
+        border-radius: 0 !important;
+        border: 1px solid #ddd;
+        min-height: 34px;
+    }
 }
 
 .product-subtotal {
@@ -243,7 +252,7 @@
     padding: 10px 0px;
     font-size: 16px;
     width: 100%;
-    background-color: #d94613;
+    background-color: #d94613 !important;
     color: #fff;
     font-weight: 700;
     justify-content: center;
