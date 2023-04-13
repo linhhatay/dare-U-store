@@ -6,6 +6,15 @@ router
   .route("/top-products")
   .get(productController.aliasTopProducts, productController.getAllProducts);
 
-router.route("/").get(productController.getAllProducts);
+router
+  .route("/")
+  .get(productController.getAllProducts)
+  .post(
+    productController.uploadProductImages,
+    productController.resizeImages,
+    productController.createProduct
+  );
+
+router.route("/:id").get(productController.getProduct);
 
 module.exports = router;

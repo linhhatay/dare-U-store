@@ -35,21 +35,24 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     category: { type: String, required: true },
-    onModel: {
+    productType: {
       type: String,
       required: true,
     },
-    specs: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        refPath: "onModel",
-      },
-    ],
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+
+productSchema.virtual("specs", {
+  refPath: "productType",
+  localField: "_id",
+  foreignField: "product",
+  justOne: false,
+});
 
 productSchema.pre("save", function (next) {
   this.slug = slugify(this.name, { lower: true });
