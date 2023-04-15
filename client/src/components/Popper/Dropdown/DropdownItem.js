@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import * as authService from '~/services/authService';
 
 import Button from '~/components/Button';
 import styles from './Dropdown.module.scss';
+import { logout } from '~/redux/actions/authAction';
 
 const cx = classNames.bind(styles);
 
@@ -12,8 +12,7 @@ function DropdownItem({ data }) {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        const token = auth?.accessToken;
-        authService.logout(token, dispatch);
+        dispatch(logout());
     };
 
     return (

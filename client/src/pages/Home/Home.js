@@ -10,6 +10,7 @@ import Product from '~/components/Product';
 import Button from '~/components/Button';
 import { FaFacebookF, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
+import Newslette from '~/layouts/components/Newslette/Newslette';
 
 const cx = classNames.bind(styles);
 
@@ -90,6 +91,7 @@ function Home() {
                     />
                 </div>
             </div>
+            <Newslette />
             <div className={cx('nav')}>
                 <div className={cx('nav-item')}>
                     <div>

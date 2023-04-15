@@ -4,20 +4,20 @@ import { useDispatch } from 'react-redux';
 
 import Button from '~/components/Button';
 import styles from './Auth.module.scss';
-import * as authService from '~/services/authService';
+import { register } from '~/redux/actions/authAction';
 
 const cx = classNames.bind(styles);
 
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const dispatch = useDispatch();
 
     const handleRegister = (e) => {
         e.preventDefault();
-        const data = { email, password };
-        authService.register(data, dispatch);
+        dispatch(register({ email, password, passwordConfirm }));
     };
 
     return (
@@ -31,6 +31,14 @@ function Register() {
                 <div className={cx('form-group')}>
                     <label>Mật khẩu *</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <div className={cx('form-group')}>
+                    <label>Xác nhận mật khẩu *</label>
+                    <input
+                        type="password"
+                        value={passwordConfirm}
+                        onChange={(e) => setPasswordConfirm(e.target.value)}
+                    />
                 </div>
                 <p className={cx('description')}>
                     Tất cả thông tin của bạn chỉ được sử dụng cho việc đặt hàng và cải thiện trải nghiệm sản phẩm. Ngoài

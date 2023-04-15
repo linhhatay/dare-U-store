@@ -5,24 +5,17 @@ import { publicRoutes, privateRoutes } from '~/routes';
 import { DefaultLayout } from '~/layouts';
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from './services/productService';
 import Notify from './components/Notify';
-import * as authService from '~/services/authService';
 
 function App() {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        getProducts(dispatch);
-        authService.refreshToken(dispatch);
-    }, []);
+    const { notify, loading } = useSelector((state) => state);
 
     // const routes = auth.token ? privateRoutes : publicRoutes;
     const routes = publicRoutes;
 
     return (
         <Router>
-            <Notify />
+            {(!!notify.status || loading) && <Notify />}
             <div className="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {

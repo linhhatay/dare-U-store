@@ -1,24 +1,39 @@
 import { useSelector, useDispatch } from 'react-redux';
-
 import Loading from './Loading';
 import Toast from './Toast';
-import * as notifySlice from '~/redux/notifySlice';
+import { useEffect } from 'react';
 
 function Notify() {
-    const { notify } = useSelector((state) => state);
+    const { notify, loading } = useSelector((state) => state);
+
     const dispatch = useDispatch();
 
     const handleCloseToast = () => {
-        dispatch(notifySlice.hide());
+        dispatch({
+            type: 'CLEAR_NOTIFY',
+        });
     };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            dispatch({
+                type: 'CLEAR_NOTIFY',
+            });
+        }, 5000);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [dispatch]);
 
     return (
         <div>
-            {notify.isLoading && <Loading />}
-            {notify.isSuccess && (
+            {loading && <Loading />}
+
+            {notify.status === 'SUCCESS' && (
                 <Toast title="Thành công" message={notify.message} handleCloseToast={handleCloseToast} />
             )}
-            {notify.isError && (
+            {notify.status === 'FAILURE' && (
                 <Toast error title="Thất bại" message={notify.message} handleCloseToast={handleCloseToast} />
             )}
         </div>

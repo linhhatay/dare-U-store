@@ -112,7 +112,7 @@ function Navigation() {
                 <div className={cx('separate')}></div>
 
                 <div>
-                    {auth.accessToken ? (
+                    {auth.isAuthenticated ? (
                         <Dropdown items={MENU_AUTH}>
                             <div>
                                 <MenuItem title="Tài khoản" dropdown={true} />

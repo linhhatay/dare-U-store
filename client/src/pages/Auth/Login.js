@@ -1,15 +1,16 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import styles from './Auth.module.scss';
-import * as authService from '~/services/authService';
-import { useNavigate } from 'react-router-dom';
+import { login } from '~/redux/actions/authAction';
 
 const cx = classNames.bind(styles);
 
 function Login() {
+    const { auth } = useSelector((state) => state);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,9 +19,13 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const data = { email, password };
-        authService.login(data, dispatch, navigate);
+        dispatch(login({ email, password }));
     };
+
+    useEffect(() => {
+        if (auth.token) navigate('/');
+    }, [auth.token, navigate]);
+
     return (
         <div className={cx('login')}>
             <h3>Đăng nhập</h3>

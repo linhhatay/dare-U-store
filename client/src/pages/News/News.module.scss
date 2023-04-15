@@ -1,14 +1,16 @@
 .wrapper {
     display: flex;
-    padding: 30px;
 
+    padding: 30px;
     h6 {
         font-size: 12px;
+
         color: #555;
     }
 
     @media screen and (max-width: 549px) {
         display: block;
+
         padding: 15px;
     }
 }
@@ -17,13 +19,19 @@
     max-width: 75%;
 
     footer {
-        text-align: center;
-        font-size: 13px;
-        color: #777;
-        padding: 8px 0;
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
         margin-right: 30px;
+
+        padding: 8px 0;
+
+        border-top: 1px solid #ccc;
+
+        border-bottom: 1px solid #ccc;
+
+        text-align: center;
+
+        font-size: 13px;
+
+        color: #777;
     }
 
     @media screen and (max-width: 549px) {
@@ -33,6 +41,7 @@
 
 .header {
     padding: 0 24px 24px 24px;
+
     text-align: center;
 }
 
@@ -45,36 +54,44 @@
 }
 
 .title {
-    color: #555;
-    line-height: 1.3;
-    font-size: 28px;
     font-weight: 500;
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    color: #555;
 }
 
 .separate {
     width: 100%;
+
     margin: 16px auto !important;
 }
 
 .time {
     font-size: 12px;
+
     color: #777;
 }
 
 .aside {
-    flex: 1;
-    border-left: 1px solid #ececec;
     padding: 0 30px 30px 30px;
 
+    border-left: 1px solid #ececec;
+
+    flex: 1;
     @media screen and (max-width: 549px) {
         display: none;
     }
 }
 
 .heading {
-    color: #777;
-    font-weight: 600;
     text-transform: uppercase;
+
+    font-weight: 600;
+
+    color: #777;
 }
 
 .post-item {
@@ -83,20 +100,31 @@
 
 .post {
     display: flex;
+
     padding-top: 12px;
 }
 
 .date {
-    color: #4db7b3;
-    width: 3.6rem;
-    height: 3.6rem;
-    border: 2px solid currentColor;
-    font-weight: 700;
-    padding: 6px;
-    line-height: 1;
     display: flex;
+
+    width: 3.6rem;
+
+    height: 3.6rem;
+
+    padding: 6px;
+
+    border: 2px solid currentColor;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    color: #4db7b3;
+
     align-items: center;
+
     justify-content: center;
+
     flex-direction: column;
 }
 
@@ -105,13 +133,16 @@
 }
 
 .label {
-    margin-left: 1.5rem;
-    line-height: 1.2;
     margin-bottom: 6px;
-    color: #919191;
 
+    margin-left: 1.5rem;
+
+    line-height: 1.2;
+
+    color: #919191;
     &:hover {
         cursor: pointer;
+
         color: #000;
     }
 }
@@ -122,20 +153,26 @@
 
 .paragraph-sub {
     h4 {
-        font-size: 18px;
         margin-bottom: 9px;
-        color: #555;
+
         font-weight: 600;
+
+        font-size: 18px;
+
+        color: #555;
     }
 
     p {
         margin-bottom: 20px;
+
         color: #777;
     }
 
     img {
         width: 100%;
+
         max-height: 500px;
+
         object-fit: cover;
     }
 }
