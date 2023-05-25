@@ -19,7 +19,7 @@ function Notify() {
             dispatch({
                 type: 'CLEAR_NOTIFY',
             });
-        }, 5000);
+        }, 3500);
 
         return () => {
             clearTimeout(timer);

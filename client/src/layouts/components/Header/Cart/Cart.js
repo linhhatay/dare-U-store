@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { RiShoppingBasketFill } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,17 +10,28 @@ import Button from '~/components/Button';
 import Portal from '~/components/Portal';
 import Separate from '~/components/Separate';
 import * as cartSlice from '~/redux/cartSlice';
+import { removeFromCart } from '~/redux/actions/cartAction';
 
 const cx = classNames.bind(styles);
 
 function Cart() {
     const [modalIsOpen, setIsOpen] = useState(false);
     const { cart } = useSelector((state) => state);
-    const { products, total, quantity } = cart;
+    const { items, total } = cart;
+    const [count, setCount] = useState(0);
+
+    const calcCountInCart = () => {
+        let number = 0;
+        items.forEach((element) => {
+            number += element.quantity;
+        });
+        return number;
+    };
+
     const dispatch = useDispatch();
 
     const handleDeleteProduct = (product) => {
-        dispatch(cartSlice.remove(product));
+        dispatch(removeFromCart(product));
     };
 
     function openModal() {
@@ -34,7 +45,7 @@ function Cart() {
     return (
         <>
             <div className={cx('wrapper')} onClick={openModal}>
-                <span className={cx('badge')}>{quantity}</span>
+                <span className={cx('badge')}>{calcCountInCart()}</span>
                 <RiShoppingBasketFill className={cx('btn')} />
             </div>
 
@@ -46,9 +57,9 @@ function Cart() {
                                 <h4 className={cx('title')}>Giỏ hàng</h4>
                                 <Separate className={cx('divider')} />
                                 <div className={cx('orders')}>
-                                    {quantity > 0 ? (
+                                    {items.length > 0 ? (
                                         <>
-                                            {products.map((product, index) => (
+                                            {items.map((product, index) => (
                                                 <div className={cx('item')} key={index}>
                                                     <div
                                                         className={cx('delete')}
@@ -57,10 +68,13 @@ function Cart() {
                                                         x
                                                     </div>
                                                     <a>
-                                                        <img src={product.image} alt="" />
-                                                        {product.title}
+                                                        <img
+                                                            src={`http://localhost:5000/img/products/${product.imageCover}`}
+                                                            alt=""
+                                                        />
+                                                        {product.name}
                                                     </a>
-                                                    <dl className="variation">
+                                                    {/* <dl className="variation">
                                                         {product.options.color ? (
                                                             <>
                                                                 <dt className="variation-color">Màu sắc:</dt>
@@ -82,7 +96,7 @@ function Cart() {
                                                         ) : (
                                                             <></>
                                                         )}
-                                                    </dl>
+                                                    </dl> */}
                                                     <span className={cx('quantity')}>
                                                         {product.quantity} x{' '}
                                                         <span className={cx('price')}>{product.price}đ</span>

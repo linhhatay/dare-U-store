@@ -6,9 +6,15 @@ import { DefaultLayout } from '~/layouts';
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Notify from './components/Notify';
+import { fetchProducts } from './redux/actions/productAction';
 
 function App() {
     const { notify, loading } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, []);
 
     // const routes = auth.token ? privateRoutes : publicRoutes;
     const routes = publicRoutes;

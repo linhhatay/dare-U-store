@@ -19,6 +19,7 @@ import Product from '../Product/Product';
 import Separate from '../Separate';
 import styles from './ProductDetails.module.scss';
 import * as cartSlice from '~/redux/cartSlice';
+import { addToCart } from '~/redux/actions/cartAction';
 
 const cx = classNames.bind(styles);
 
@@ -39,8 +40,8 @@ function ProductDetails() {
     const [options, setOptions] = useState({});
     const dispatch = useDispatch();
 
-    const handleSale = (price, sale) => {
-        let newPrice = Number(price) - Math.floor(Number((price * sale) / 100));
+    const handleSale = (price, discount) => {
+        let newPrice = Number(price) - Math.floor(Number((price * discount) / 100));
         return Math.round(newPrice / 1000) * 1000;
     };
 
@@ -53,19 +54,20 @@ function ProductDetails() {
     };
 
     const handleAddProduct = () => {
-        const data = {
-            title: details.title,
-            image: details.image,
-            quantity: quantity,
-            price: handleSale(details.price, details.sale) * quantity,
-            options: options,
+        const item = {
+            id: details.id,
+            name: details.name,
+            price: handleSale(details.price, details.discount),
+            quantity,
+            options,
+            imageCover: details.imageCover,
         };
-        dispatch(cartSlice.add(data));
+        dispatch(addToCart(item));
     };
 
     useEffect(() => {
-        if (id && product.length > 0) {
-            product.forEach((item) => {
+        if (id && product.items.length > 0) {
+            product.items.forEach((item) => {
                 if (item._id === id) {
                     setDetails(item);
                 }
@@ -74,17 +76,17 @@ function ProductDetails() {
         window.scrollTo(0, 0);
     }, [id, product]);
 
-    useEffect(() => {
-        if (product.length > 0 && details) {
-            const result = product.filter((item) => {
-                return item.category === details.category;
-            });
-            const output = result.filter((item) => {
-                return item !== details;
-            });
-            setSuggested(output);
-        }
-    }, [details, product]);
+    // useEffect(() => {
+    //     if (product.items.length > 0 && details) {
+    //         const result = product.items.filter((item) => {
+    //             return item.category === details.category;
+    //         });
+    //         const output = result.filter((item) => {
+    //             return item !== details;
+    //         });
+    //         setSuggested(output);
+    //     }
+    // }, [details, product]);
 
     return (
         <div className={cx('wrapper')}>
@@ -102,26 +104,27 @@ function ProductDetails() {
                 <div className={cx('inner')}>
                     <div className={cx('content')}>
                         <div className={cx('image')}>
-                            <div className={cx('badge')}>-{details.sale}%</div>
-                            <img src={details.image} alt="" />
+                            <div className={cx('badge')}>-{details.discount}%</div>
+                            <img src={`http://localhost:5000/img/products/${details.imageCover}`} alt="imageProduct" />
                         </div>
                         <div className={cx('info')}>
-                            <h1 className={cx('name')}>{details.title}</h1>
+                            <h1 className={cx('name')}>{details.name}</h1>
                             <Separate />
                             <div className={cx('price')}>
-                                <span>{details.price?.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}đ</span>
+                                <span>{details.price}đ</span>
                                 <strong>
-                                    {handleSale(details.price, details.sale)
+                                    {handleSale(details.price, details.discount)
                                         .toString()
                                         .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                                     đ
                                 </strong>
                             </div>
-                            {details.description?.map((item, index) => (
+                            {/* {details.description.map((item, index) => (
                                 <li className={cx('description')} key={index}>
                                     {item}
                                 </li>
-                            ))}
+                            ))} */}
+                            {/* <li className={cx('description')}>{details.description}</li> */}
                             <table className={cx('table')}>
                                 <tbody>
                                     {details.color?.length > 0 && (
@@ -137,7 +140,7 @@ function ProductDetails() {
                                             </td>
                                         </tr>
                                     )}
-                                    {details.sw?.length > 0 && (
+                                    {/* {details.sw?.length > 0 && (
                                         <tr>
                                             <th>SWITCH</th>
                                             <td>
@@ -149,7 +152,7 @@ function ProductDetails() {
                                                 </select>
                                             </td>
                                         </tr>
-                                    )}
+                                    )} */}
                                 </tbody>
                             </table>
                             <div className={cx('order')}>

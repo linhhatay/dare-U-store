@@ -38,7 +38,7 @@ function Home() {
     const settings = {
         infinite: true,
         speed: 500,
-        slidesToShow: 6,
+        slidesToShow: 4,
         slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
@@ -76,8 +76,9 @@ function Home() {
             </div>
             <div className={cx('suggestion')}>
                 <Slider {...settings} className={cx('carousel')}>
-                    {product.length > 0 &&
-                        product.slice(0, 10).map((item, index) => <Product data={item} key={index} />)}
+                    {product.items.length > 0 &&
+                        // product.items.slice(0, 10).map((item, index) => <Product data={item} key={index} />)}
+                        product.items.map((item, index) => <Product data={item} key={index} />)}
                 </Slider>
             </div>
             <div className={cx('banner-layers')}>

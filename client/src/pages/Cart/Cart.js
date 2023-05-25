@@ -3,7 +3,8 @@ import { AiFillTag } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '~/components/Button';
 import config from '~/config';
-import * as cartSlice from '~/redux/cartSlice';
+import { removeFromCart } from '~/redux/actions/cartAction';
+
 import styles from './Cart.module.scss';
 
 const cx = classNames.bind(styles);
@@ -13,12 +14,12 @@ function Cart() {
     const dispatch = useDispatch();
 
     const handleDeleteProduct = (product) => {
-        dispatch(cartSlice.remove(product));
+        dispatch(removeFromCart(product));
     };
 
     return (
         <div className={cx('wrapper')}>
-            {cart.products.length > 0 ? (
+            {cart.items.length > 0 ? (
                 <div className={cx('container')}>
                     <div className={cx('list-products')}>
                         <div className={cx('edit')}>
@@ -35,21 +36,24 @@ function Cart() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {cart.products.map((product, index) => (
+                                        {cart.items.map((product, index) => (
                                             <tr className={cx('product-item')} key={index}>
                                                 <td className={cx('product-remove')}>
-                                                    <a href="#" onClick={handleDeleteProduct}>
+                                                    <a href="##" onClick={() => handleDeleteProduct(product)}>
                                                         ×
                                                     </a>
                                                 </td>
                                                 <td className={cx('product-thumbnail')}>
-                                                    <a href="https://dareu.com.vn/tai-nghe-gaming-dareu-eh416-rgb/">
-                                                        <img src={product.image} alt="" />
+                                                    <a href="/" alt="imageProduct">
+                                                        <img
+                                                            src={`http://localhost:5000/img/products/${product.imageCover}`}
+                                                            alt="imageProduct"
+                                                        />
                                                     </a>
                                                 </td>
                                                 <td className={cx('product-name')} data-title="Sản phẩm">
                                                     <a href="https://dareu.com.vn/tai-nghe-gaming-dareu-eh416-rgb/">
-                                                        {product.title}
+                                                        {product.name}
                                                     </a>
                                                     {/* <div className="show-for-small mobile-product-price">
                                                     <span className="mobile-product-price__qty">1 x </span>
